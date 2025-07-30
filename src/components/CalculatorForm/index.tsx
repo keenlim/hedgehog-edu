@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react';
-import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor} from '@mantine/core';
+import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select} from '@mantine/core';
 import classess from './CalculatorForm.module.css';
 import { SelectableOptionButton } from '../Common/SelectableOptionButton';
 
 const RepaymentPlan = [
-    'Estimated Repayment Period',
-    'Estimated Monthy Repayment Amount'
+    {value: 'repaymentPeriod', label: 'Estimated Repayment Period'},
+    {value: 'repaymentAmount', label: 'Estimated Monthy Repayment Amount'}
 ]
 
 export function CalculatorForm () {
@@ -18,6 +18,10 @@ export function CalculatorForm () {
     const [studyLength, setStudyLength] = useState<string | number>(3);
     const [withdrawalLimit, setWithdrawalLimit] = useState<string | number>(10000);
     const [interestRates, setInterestRates] = useState<string | number>(4.20);
+    const [repaymentPlans, setRepaymentPlans] = useState<string | null>('repaymentPeriod');
+    const [repaymentPeriod, setRepaymentPeriod] = useState<string | number>(12);
+    const [repaymentAmount, setRepaymentAmount] = useState<string | number>(100);
+
 
     return (
         <Center>
@@ -162,26 +166,54 @@ export function CalculatorForm () {
 
                     <Space h="lg" />
                     <Text mb="md">
-                       Estimated Repayment Period
+                       Select repayment plan
                     </Text>
-                    <NumberInput
-                        placeholder="Length of Repayment in months "
-                        suffix="   years"
-                        required
-                        min={1}
-                        step={1}
-                        max={6}
-                        defaultValue={3}
-                        onChange={setStudyLength}
-                        size="lg"
-                        className={classess.numberInput}
+                    <Select data={RepaymentPlan}
+                            placeholder="Select repayment plan"
+                            value={repaymentPlans}
+                            onChange={(newValue) => setRepaymentPlans(newValue)}
+                            size="lg"
+                            className={classess.dropdown}
                     />
 
-                    <Space h="lg" />
-                    <Text mb="md">
-                       Select repayment plan (TODO)
-                    </Text>
-                    {/* TODO: Repayment Plan Dropdown */}
+                    {repaymentPlans === 'repaymentPeriod' ? (
+                        <>
+                            <Space h="lg" />
+                            <Text mb="md">
+                                Estimated Repayment Period
+                            </Text>
+                            <NumberInput
+                                placeholder="Length of Repayment in months "
+                                suffix="   months"
+                                required
+                                min={1}
+                                step={1}
+                                max={144}
+                                value={repaymentPeriod}
+                                onChange={setRepaymentPeriod}
+                                size="lg"
+                                className={classess.numberInput}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <Space h="lg" />
+                            <Text mb="md">
+                                Estimated Monthly Repayment Amount
+                            </Text>
+                            <NumberInput
+                                placeholder="Estimated Monthly Repayment Amount"
+                                prefix="SGD     "
+                                required
+                                min={100}
+                                step={100}
+                                value={repaymentAmount}
+                                onChange={setRepaymentAmount}
+                                size="lg"
+                                className={classess.numberInput}
+                            />
+                        </>
+                    )}
 
                     <Space h="lg" />
                     <Text mb="md">

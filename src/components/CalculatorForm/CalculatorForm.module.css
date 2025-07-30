@@ -15,3 +15,8 @@
     color: var(--mantine-color-teal-7);
     text-decoration: none;
 }
+
+.dropdown input:focus {
+    border-color: var(--mantine-color-teal-5);
+    outline: none; /* remove default outline if present */
+}
