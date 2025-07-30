@@ -1,0 +1,24 @@
+/* SelectableOptionButton.module.css */
+.root {
+    border: 1px solid var(--mantine-color-gray-4);
+    border-radius: var(--mantine-radius-md);
+    padding: var(--mantine-spacing-sm);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    width: 100%;
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+  .selected {
+    border-color: var(--mantine-color-teal-5);
+    background-color: rgba(var(--mantine-color-teal-5-rgb), 0.1);
+  }
+  .icon {
+    margin-right: var(--mantine-spacing-md);
+  }
+
+  .selected_icon {
+    color: var(--mantine-color-teal-5);
+  }
+  
