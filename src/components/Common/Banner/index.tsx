@@ -11,7 +11,6 @@ import classes from './Banner.module.css';
 import { useRouter } from 'next/navigation';
 import { ReactNode } from 'react';
 import { IconChevronLeft } from "@tabler/icons-react";
-import { Icon } from "@mui/material";
 
 interface BannerProps {
     /*Path to navigate back to (or can be override wiht onBack) */

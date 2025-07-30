@@ -1,0 +1,5 @@
+.footer {
+    background-color: #E6F1ED;   /* light minty green */
+    padding: 1.5rem 2rem;        /* adjust vertical/horizontal padding */
+    border-top: 1px solid #CFE2DC; /* subtle divider line */
+  }
