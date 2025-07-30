@@ -4,8 +4,8 @@ import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/c
 import { HeaderMegaMenu } from '@/components/HeaderTabs';
 
 export const metadata = {
-  title: 'My Mantine app',
-  description: 'I have followed setup instructions carefully',
+  title: 'Education Financing',
+  description: 'CPF Education Financing Portal',
 };
 
 export default function RootLayout({
