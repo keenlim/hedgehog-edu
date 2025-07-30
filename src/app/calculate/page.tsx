@@ -1,9 +1,13 @@
-import { CalculatorBanner } from "@/components/CalculatorBanner";
+import { Banner } from "@/components/Common/Banner";
 
 export default function Calculate() {
   return (
     <div>
-      <CalculatorBanner />
+      <Banner
+        backRoute="/"
+        backLabel = "Loan Comparison"
+        subtitle = "education financing"
+        title = "Education Loan Calculator" />
     </div>
   );
 }
