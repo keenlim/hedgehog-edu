@@ -1,18 +1,11 @@
-// src/app/page.tsx
 import { Banner } from "@/components/Common/Banner";
 import { LandingPageComponent } from "@/components/LandingPage";
-// (optional) import { Footer } from "@/components/Common/Footer";
 
-export const metadata = {
-  title: "CPF Education Loan vs MOE Tuition Fee Loan Comparison",
-};
-
-export default function Home() {
+export default function LandingPage() {
   return (
     <div>
       <Banner
-        backRoute={null}
-        backLabel={null}
+        backRoute="/"
         subtitle="education financing"
         title="CPF Education Loan vs MOE Tuition Fee Loan Comparison"
       />

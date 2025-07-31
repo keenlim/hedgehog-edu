@@ -1,0 +1,55 @@
+.page {
+	padding-bottom: 4rem;
+  }
+  
+  .section {
+	padding: 3rem 0;
+  }
+  
+  .anchorNav {
+	display: flex;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+	padding: 1rem 0 0.5rem 0;
+	border-bottom: 1px solid var(--mantine-color-gray-3);
+  }
+  
+  .anchorLink {
+	color: var(--mantine-color-teal-7);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.95rem;
+  }
+  
+  .cardTitle {
+	font-weight: 700;
+  }
+  
+  .subtle {
+	color: var(--mantine-color-dimmed);
+  }
+  
+  .resourceLink {
+	color: var(--mantine-color-teal-7);
+	text-decoration: none;
+	font-weight: 600;
+  }
+  
+  .note {
+	background-color: #f8f5f5;
+  }
+  
+  .tableStickyHead th {
+	position: sticky;
+	top: 0;
+	background: var(--mantine-color-body);
+	z-index: 1;
+  }
+  
+  .kicker {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.8rem;
+	color: var(--mantine-color-dimmed);
+  }
+  
