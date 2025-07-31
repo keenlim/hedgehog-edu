@@ -1,0 +1,92 @@
+import { Card, Center, Grid, Space, Text, Title } from '@mantine/core';
+import classes from './ResultsExplain.module.css';
+import { formatCurrency } from '@/utils/format';
+
+interface ResultsExplainProps {
+    cpfTotalRepaymentAmount: number;
+}
+
+export function ResultsExplain ({
+    cpfTotalRepaymentAmount
+}: ResultsExplainProps) {
+    return (
+        <div className={classes.main}>
+            <Center pb="md">
+                <Title size="h2">
+                    Impact on Lenders' Retirement Sum
+                </Title>
+            </Center>
+
+            <Center pt="md">
+                <Grid gutter="lg" justify="center" align="center">
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Card withBorder radius="md" padding="lg" className={classes.card}>
+                            <Title size="h1" ta="center">
+                                 - {formatCurrency(cpfTotalRepaymentAmount * (1.025 ** 12))}
+                            </Title>
+                            <Space h="xs" />
+                            <Text size="sm" ta="center" >
+                                if <strong>NO</strong> repayment made after <strong>12 years</strong>
+                            </Text>
+                        </Card>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Card withBorder radius="md" padding="lg" className={classes.card}>
+                            <Title size="h1" ta="center">
+                                {formatCurrency(0)}
+                            </Title>
+                            <Text size="sm" ta="center" pt="sm">
+                                <strong>Does not</strong> affect lender's CPF Retirement Sum
+                            </Text>
+                        </Card>
+                    </Grid.Col>
+
+                    <Grid.Col span={12}>
+                        <Center py="md">
+                            <Title size="h2">
+                                Deferment Options
+                            </Title>
+                        </Center>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Card withBorder radius="md" padding="lg" className={classes.card}>
+                            <Text size="sm" ta="left" py="md">
+                                For the CPF Education Loan, while deferment of repayment is possible for scenarios (i.e.  National Service (NS), <strong>interest will always continue to accrue.</strong>
+                            </Text>
+                        </Card>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Card withBorder radius="md" padding="lg" className={classes.card}>
+                            <Text size="sm" ta="left">
+                                For the MOE Tuition Fee Loan, you may appeal for <strong>deferment of repayment and interest</strong> due to serving NS, further studies or financial difficulties. <strong>Interest will not accrue during deferment.</strong>
+                            </Text>
+                        </Card>
+                    </Grid.Col>
+
+                    <Grid.Col span={12}>
+                        <Center py="md">
+                            <Title size="h2">
+                                Maximum Repayment Period
+                            </Title>
+                        </Center>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Card withBorder radius="md" padding="lg" className={classes.card}>
+                            <Title size="h2" ta="center" py="sm" c="teal">
+                                12 Years
+                            </Title>
+                        </Card>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Card withBorder radius="md" padding="lg" className={classes.card}>
+                            <Title size="h2" ta="center" py="sm" c="teal">
+                                20 Years
+                            </Title>
+                        </Card>
+                    </Grid.Col>
+                </Grid>
+            </Center>
+
+        </div>
+    )
+}
