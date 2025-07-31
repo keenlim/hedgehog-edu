@@ -2,15 +2,17 @@ import { Button, Center, Divider, Grid, Space, Text, Title } from '@mantine/core
 import classes from './CalculatorResult.module.css';
 import { formatCurrency } from '@/utils/format';
 import { IconEdit, IconPlus } from '@tabler/icons-react';
+import { useMemo } from 'react';
 
 interface CalculaterResultProps {
-    cpfMonthlyInstalment?: number;
-    cpfTotalRepaymentAmount?: number;
-    tflMonthlyInstalment?: number;
-    tflTotalRepaymentAmount?: number;
-    tflPrincipalAmount?: number;
-    tflCashAmount?: number;
-    handleEdit?: () => void;
+    cpfMonthlyInstalment: number;
+    cpfTotalRepaymentAmount: number;
+    tflMonthlyInstalment: number;
+    tflTotalRepaymentAmount: number;
+    tflPrincipalAmount: number;
+    tflCashAmount: number;
+    cpfWithdrawalLimit: number;
+    handleEdit: () => void;
 }
 
 export function CalculatorResultDesktop({
@@ -20,9 +22,14 @@ export function CalculatorResultDesktop({
     tflTotalRepaymentAmount,
     tflPrincipalAmount,
     tflCashAmount,
+    cpfWithdrawalLimit,
     handleEdit,
-}: CalculaterResultProps = {
-}) {
+}: CalculaterResultProps) {
+
+    const isEligibleForWithdrawal = useMemo(() => {
+        return cpfTotalRepaymentAmount <= cpfWithdrawalLimit;
+    }, [cpfTotalRepaymentAmount, cpfWithdrawalLimit]);
+
     return (
         <div className={classes.resultsBox}>
             <Grid mt="sm" py="sm" px="md" justify="center" align="center">
@@ -44,17 +51,36 @@ export function CalculatorResultDesktop({
                 </Grid.Col>
 
                 <Grid.Col span={6}>
-                    <Center>
-                        <Title size="h1" className={classes.amountText}>
-                            {cpfTotalRepaymentAmount ? formatCurrency(cpfTotalRepaymentAmount): 'NA'}
-                        </Title>
-                    </Center>   
-                    <Space h="xs" />
-                    <Center>
-                        <Text size="md" c="#f6d594">
-                            100 % loan coverage
-                        </Text>
-                    </Center>
+                    {isEligibleForWithdrawal ? (
+                        <>
+                        <Center>
+                            <Title size="h1" className={classes.amountText}>
+                                {cpfTotalRepaymentAmount ? formatCurrency(cpfTotalRepaymentAmount): 'NA'}
+                            </Title>
+                        </Center>   
+                        <Space h="xs" />
+                        <Center>
+                            <Text size="md" c="#f6d594">
+                                100 % loan coverage
+                            </Text>
+                        </Center>
+                        </>
+                    ) : (
+                        <>
+                        <Center>
+                            <Title size="h1" className={classes.amountText}>
+                                Not Eligible
+                            </Title>
+                        </Center>   
+                        <Space h="xs" />
+                        <Center>
+                            <Text size="md" c="#f6d594">
+                                The lender's OA does not have sufficient savings to accommodate the indicated loan amount. 
+                            </Text>
+                        </Center>
+                        </>
+                    )}
+                    
                 </Grid.Col>
 
                 <Grid.Col span={6}>

@@ -94,10 +94,12 @@ export default function CalculateApp() {
                         tflTotalRepaymentAmount={TFL_Total_Repayment_Amount}
                         tflPrincipalAmount={TFL_principal_amount}
                         tflCashAmount={TFL_CASH_AMOUNT}
+                        cpfWithdrawalLimit={Number(withdrawalLimit)}
                         handleEdit={() => setIsCalculationForm(true)}/>
             </Banner>
             <ResultsExplain 
-                cpfTotalRepaymentAmount={CPF_Total_Repayment_Amount}/>
+                cpfTotalRepaymentAmount={CPF_Total_Repayment_Amount}
+                cpfWithdrawalLimit={Number(withdrawalLimit)}/>
             <Footer handleCalculation={handleCalculation} 
                     isCalculationForm={isCalculationForm}/>
         </div>)
