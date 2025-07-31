@@ -1,4 +1,5 @@
 'use client';
+
 import { 
     Button, 
     Group,
@@ -23,6 +24,7 @@ interface BannerProps {
     title?: string;
     children?: ReactNode;
 }
+
 export function Banner({
     backRoute,
     backLabel,
@@ -33,6 +35,7 @@ export function Banner({
     children,
 }: BannerProps) {
     const router = useRouter();
+
     const handleBack = () => {
         if (onBack) {
             onBack();
@@ -40,6 +43,7 @@ export function Banner({
             router.replace(backRoute, { scroll: false });
         }
     }
+
     return (
         <div className={classes.banner}>
             {backLabel && (backRoute || onBack) && (
@@ -59,7 +63,9 @@ export function Banner({
                     {subtitle}
                 </Text>
             )}
+
             <Space h="md" /> 
+
             {title && (
                 <Title className={classes.text} order={2} c="white" fw={800} ta="center">
                     {title}
