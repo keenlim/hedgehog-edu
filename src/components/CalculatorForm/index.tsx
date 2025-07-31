@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react';
 import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select} from '@mantine/core';
 import classess from './CalculatorForm.module.css';
 import { SelectableOptionButton } from '../Common/SelectableOptionButton';
@@ -10,19 +9,52 @@ const RepaymentPlan = [
     {value: 'repaymentAmount', label: 'Estimated Monthy Repayment Amount'}
 ]
 
-export function CalculatorForm () {
-    const [course, setCourse] = useState<'diploma' | 'degree'>('diploma');
-    const [ns, setNS] = useState<'yes' | 'no'>('yes');
-    const [schoolFees, setSchoolFees] = useState<string | number>(4200);
-    const [academicSystem, setAcademicSystem] = useState<'semester' | 'trimester'>('semester');
-    const [studyLength, setStudyLength] = useState<string | number>(3);
-    const [withdrawalLimit, setWithdrawalLimit] = useState<string | number>(10000);
-    const [interestRates, setInterestRates] = useState<string | number>(4.20);
-    const [repaymentPlans, setRepaymentPlans] = useState<string | null>('repaymentPeriod');
-    const [repaymentPeriod, setRepaymentPeriod] = useState<string | number>(12);
-    const [repaymentAmount, setRepaymentAmount] = useState<string | number>(100);
+interface CalculateFormProps {
+    course: 'diploma' | 'degree';
+    handleCourse: ( value: 'diploma' | 'degree' ) => void;
+    ns: 'yes' | 'no';
+    handleNS: ( value: 'yes' | 'no' ) => void;
+    schoolFees: string | number;
+    handleSchoolFees: (value: string | number) => void;
+    academicSystem: 'semester' | 'trimester';
+    handleAcademicSystem: (value: 'semester' | 'trimester') => void;
+    studyLength: string | number;
+    handleStudyLength: (value: string | number) => void;
+    withdrawalLimit: string | number;
+    handleWithdrawalLimit: (value: string | number) => void;
+    interestRates: string | number;
+    handleInterestRates: (value: string | number) => void;
+    repaymentPlans: string | null;
+    handleRepaymentPlans: (value: string | null) => void;
+    repaymentPeriod: string | number;
+    handleRepaymentPeriod: (value: string | number) => void;
+    repaymentAmount: string | number;
+    handleRepaymentAmount: (value: string | number) => void;
+}
 
-
+export function CalculatorForm ({
+    course,
+    handleCourse,
+    ns,
+    handleNS,
+    schoolFees,
+    handleSchoolFees,
+    academicSystem,
+    handleAcademicSystem,
+    studyLength,
+    handleStudyLength,
+    withdrawalLimit,
+    handleWithdrawalLimit,
+    interestRates,
+    handleInterestRates,
+    repaymentPlans,
+    handleRepaymentPlans,
+    repaymentPeriod,
+    handleRepaymentPeriod,
+    repaymentAmount,
+    handleRepaymentAmount
+}: CalculateFormProps) {
+   
     return (
         <Center>
             <Box w="80%" mx="auto">
@@ -46,6 +78,13 @@ export function CalculatorForm () {
                     <Paper mt="lg" shadow="xs" radius="md" p="xl" bg="#f8f5f5">
                         <Text pb="xs" fw={800}>Important notes</Text>
                         <List withPadding>
+                            <List.Item>
+                                Please note that this planner/calculator serves as a <strong>planning tool only</strong> and is intended to help you explore different financing scenarios. The calculations and results provided are for illustrative purposes and <strong>should not be considered as financial advice or a definitive guide for your financing decisions.</strong> 
+                            </List.Item>
+                            <List.Item>
+                                The results of this calculator are estimates and should only be used as reference. 
+                            </List.Item>
+                            <Space h="xs" />
                             <List.Item>Assumed loan converage:</List.Item>
                             <List withPadding listStyleType="disc">
                                 <List.Item>MOE Tuition Fee Loan: 90% of school fees covered by loan + 10% cash upfront</List.Item>
@@ -61,12 +100,12 @@ export function CalculatorForm () {
                     <SelectableOptionButton 
                         label="Diploma (Polytechnics/Art Institutions)"
                         selected={ course === 'diploma' }
-                        onClick={() => setCourse('diploma') }
+                        onClick={() => handleCourse('diploma') }
                     />
                     <SelectableOptionButton 
                         label="Degree (Universities/Art Institutions)"
                         selected={ course === 'degree' }
-                        onClick={() => setCourse('degree') }
+                        onClick={() => handleCourse('degree') }
                     />
 
                     <Space h="lg" />
@@ -76,12 +115,12 @@ export function CalculatorForm () {
                     <SelectableOptionButton 
                         label="Yes"
                         selected={ ns === 'yes' }
-                        onClick={() => setNS('yes') }
+                        onClick={() => handleNS('yes') }
                     />
                     <SelectableOptionButton 
                         label="No"
                         selected={ ns === 'no' }
-                        onClick={() => setNS('no') }
+                        onClick={() => handleNS('no') }
                     />
 
                     <Space h="lg" />
@@ -96,8 +135,8 @@ export function CalculatorForm () {
                         decimalScale={2}
                         min={1000}
                         step={100}
-                        defaultValue={4200}
-                        onChange={setSchoolFees}
+                        value={schoolFees}
+                        onChange={handleSchoolFees}
                         size="lg"
                         className={classess.numberInput}
                     />
@@ -109,12 +148,12 @@ export function CalculatorForm () {
                     <SelectableOptionButton 
                         label="Semester (2 terms per academic year)"
                         selected={ academicSystem === 'semester' }
-                        onClick={() => setAcademicSystem('semester') }
+                        onClick={() => handleAcademicSystem('semester') }
                     />
                     <SelectableOptionButton 
                         label="Trimester (3 terms per academic year)"
                         selected={ academicSystem === 'trimester' }
-                        onClick={() => setAcademicSystem('trimester') }
+                        onClick={() => handleAcademicSystem('trimester') }
                     />
 
                     <Space h="lg" />
@@ -128,8 +167,8 @@ export function CalculatorForm () {
                         min={1}
                         step={1}
                         max={6}
-                        defaultValue={3}
-                        onChange={setStudyLength}
+                        value={studyLength}
+                        onChange={handleStudyLength}
                         size="lg"
                         className={classess.numberInput}
                     />
@@ -146,8 +185,8 @@ export function CalculatorForm () {
                         decimalScale={2}
                         min={100}
                         step={100}
-                        defaultValue={10000}
-                        onChange={setWithdrawalLimit}
+                        value={withdrawalLimit}
+                        onChange={handleWithdrawalLimit}
                         size="lg"
                         className={classess.numberInput}
                     />
@@ -171,7 +210,7 @@ export function CalculatorForm () {
                     <Select data={RepaymentPlan}
                             placeholder="Select repayment plan"
                             value={repaymentPlans}
-                            onChange={(newValue) => setRepaymentPlans(newValue)}
+                            onChange={(newValue) => handleRepaymentPlans(newValue)}
                             size="lg"
                             className={classess.dropdown}
                     />
@@ -190,7 +229,7 @@ export function CalculatorForm () {
                                 step={1}
                                 max={144}
                                 value={repaymentPeriod}
-                                onChange={setRepaymentPeriod}
+                                onChange={handleRepaymentPeriod}
                                 size="lg"
                                 className={classess.numberInput}
                             />
@@ -208,7 +247,7 @@ export function CalculatorForm () {
                                 min={100}
                                 step={100}
                                 value={repaymentAmount}
-                                onChange={setRepaymentAmount}
+                                onChange={handleRepaymentAmount}
                                 size="lg"
                                 className={classess.numberInput}
                             />
@@ -228,8 +267,8 @@ export function CalculatorForm () {
                         min={1}
                         step={0.1}
                         max={10}
-                        defaultValue={4.20}
-                        onChange={setInterestRates}
+                        value={interestRates}
+                        onChange={handleInterestRates}
                         size="lg"
                         className={classess.numberInput}
                     />
