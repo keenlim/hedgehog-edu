@@ -22,6 +22,7 @@ import {
   ArticleCarousel,
   type ArticleItem,
 } from "@/components/Common/ArticleCarousel";
+import { useEffect } from "react";
 
 const ARTICLES: ArticleItem[] = [
   {
@@ -104,6 +105,9 @@ const ARTICLES: ArticleItem[] = [
 ];
 
 export function LandingPageComponent() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // only on mount
   return (
     <Container size="lg" className={classes.page}>
       <nav className={classes.anchorNav}>

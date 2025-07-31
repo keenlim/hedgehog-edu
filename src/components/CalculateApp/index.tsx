@@ -1,13 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CalculatorForm } from "@/components/CalculatorForm";
 import { Banner } from "@/components/Common/Banner";
 import { Footer } from "@/components/Common/Footer";
 import { useCalculator } from '@/hooks/useCalculator';
 import { CalculatorResultDesktop } from '../CalculatorResult';
-import { Button } from '@mantine/core';
-import { IconChevronRight } from '@tabler/icons-react';
 import { ResultsExplain } from '../ResultsExplain';
 
 export default function CalculateApp() {
@@ -29,6 +27,11 @@ export default function CalculateApp() {
     const [TFL_Total_Repayment_Amount, setTFL_Total_Repayment_Amount] = useState<number>(0);
     const [TFL_principal_amount, setTFL_principal_amount] = useState<number>(0);
     const [TFL_CASH_AMOUNT, setTFL_CASH_AMOUNT] = useState<number>(0);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [isCalculationForm]); // only on mount
+
 
     const handleCalculation = () => {
         const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(schoolFees, academicSystem, course, repaymentPeriod, interestRates, studyLength);
