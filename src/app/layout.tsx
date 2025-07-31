@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 
 import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
 import { HeaderMegaMenu } from '@/components/HeaderTabs';
