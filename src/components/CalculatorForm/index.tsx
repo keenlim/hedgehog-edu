@@ -16,8 +16,8 @@ interface CalculateFormProps {
     handleNS: ( value: 'yes' | 'no' ) => void;
     schoolFees: string | number;
     handleSchoolFees: (value: string | number) => void;
-    academicSystem: 'semester' | 'trimester';
-    handleAcademicSystem: (value: 'semester' | 'trimester') => void;
+    academicSystem: 2 | 3;
+    handleAcademicSystem: (value: 2 | 3) => void;
     studyLength: string | number;
     handleStudyLength: (value: string | number) => void;
     withdrawalLimit: string | number;
@@ -147,13 +147,13 @@ export function CalculatorForm ({
                     </Text>
                     <SelectableOptionButton 
                         label="Semester (2 terms per academic year)"
-                        selected={ academicSystem === 'semester' }
-                        onClick={() => handleAcademicSystem('semester') }
+                        selected={ academicSystem === 2 }
+                        onClick={() => handleAcademicSystem(2) }
                     />
                     <SelectableOptionButton 
                         label="Trimester (3 terms per academic year)"
-                        selected={ academicSystem === 'trimester' }
-                        onClick={() => handleAcademicSystem('trimester') }
+                        selected={ academicSystem === 3}
+                        onClick={() => handleAcademicSystem(3) }
                     />
 
                     <Space h="lg" />
@@ -222,12 +222,12 @@ export function CalculatorForm ({
                                 Estimated Repayment Period
                             </Text>
                             <NumberInput
-                                placeholder="Length of Repayment in months "
-                                suffix="   months"
+                                placeholder="Length of Repayment in years "
+                                suffix="   years"
                                 required
                                 min={1}
                                 step={1}
-                                max={144}
+                                max={50}
                                 value={repaymentPeriod}
                                 onChange={handleRepaymentPeriod}
                                 size="lg"

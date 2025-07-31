@@ -4,7 +4,11 @@ import { Button, Group } from "@mantine/core";
 import classes from './Footer.module.css';
 import { IconChevronRight } from "@tabler/icons-react";
 
-export function Footer() {
+interface FooterProps {
+    handleCalculation: () => void;
+}
+
+export function Footer({ handleCalculation }: FooterProps) {
     return (
         <div className={classes.footer}>
             <Group justify="space-between">
@@ -23,7 +27,7 @@ export function Footer() {
                     color="teal"
                     size="md"
                     radius="xl"
-                    //TODO: onclick function
+                    onClick={handleCalculation}
                     >
                     Calculate 
                 </Button>
