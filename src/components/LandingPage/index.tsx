@@ -301,9 +301,9 @@ export function LandingPageComponent() {
           <Button
             component={Link}
             href="/calculate"
-            variant="outline"
+            variant="filled"
             color="teal"
-            size="md"
+            size="lg"
             radius="xl"
           >
             Comparison calculator
