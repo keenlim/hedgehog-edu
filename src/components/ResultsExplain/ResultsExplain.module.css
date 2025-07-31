@@ -1,0 +1,9 @@
+.main {
+    padding: 32px;
+    margin-bottom: 32px;
+}
+.card {
+    min-width: 400px;
+    min-height: 120px;
+    border: 1px solid #9dbfbf
+  }

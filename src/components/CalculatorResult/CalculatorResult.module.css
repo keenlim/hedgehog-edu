@@ -1,0 +1,23 @@
+.resultsBox {
+    padding: 32px;
+}
+
+.headerText {
+    color: #f6d594;
+}
+
+.divider {
+    color: #ffffff;
+}
+
+.amountText {
+    color: #ffffff;
+}
+
+.smallerText {
+  letter-spacing: 0.05em;
+}
+
+.iconPlus {
+    margin: 0 0.5rem;
+}

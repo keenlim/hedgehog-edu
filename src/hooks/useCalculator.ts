@@ -4,7 +4,12 @@ export function roundToTwoDecimalPlaces(value: number): number {
     return Math.round(value * 100) / 100;
 }
 
-export function CPFCalculator(schoolFees: number, academicSystem: 2 | 3, course: 'diploma' | 'degree', repaymentPeriod: number, studyLength: number) {
+export function CPFCalculator(schoolFees: number, 
+                              academicSystem: 2 | 3, 
+                              course: 'diploma' | 'degree', 
+                              repaymentPeriod: number, 
+                              studyLength: number) {
+
     const CPF_INTEREST_RATE = 2.5 / 100; // CPF interest rate is fixed at 2.5%
     const num_of_deduction = studyLength * academicSystem;
     const TOTAL_REPAYMENT_PERIOD_MONTHS = repaymentPeriod * 12; // Convert repayment period from years to months
@@ -30,7 +35,13 @@ export function CPFCalculator(schoolFees: number, academicSystem: 2 | 3, course:
      return [CPF_monthly_instalment_round, CPF_total_payment_amount];
 }
 
-export function TFLCalculator(schoolFees: number, academicSystem: 2 | 3, course: 'diploma' | 'degree', repaymentPeriod: number, interestRates: number, studyLength: number) {
+export function TFLCalculator(schoolFees: number, 
+                              academicSystem: 2 | 3, 
+                              course: 'diploma' | 'degree', 
+                              repaymentPeriod: number, 
+                              interestRates: number, 
+                              studyLength: number) {
+                                
     // Fixed variables for both CPF & TFL
     const TFL_INTEREST_RATE = interestRates / 100; // Convert interest rate from percentage to decimal
     const num_of_deduction = studyLength * academicSystem;
@@ -57,19 +68,19 @@ export function TFLCalculator(schoolFees: number, academicSystem: 2 | 3, course:
     // Calculate TFL Total Payment Amount
     const TFL_total_payment_amount = roundToTwoDecimalPlaces((TFL_monthly_instalment * TOTAL_REPAYMENT_PERIOD_MONTHS) + TOTAL_CASH_AMOUNT);
 
-    return [TFL_monthly_instalment_round, TFL_total_payment_amount];
+    return [TFL_monthly_instalment_round, TFL_total_payment_amount, TFL_principal_amount, TOTAL_CASH_AMOUNT];
 
 }
 
-export function useCalculator(schoolFees: number, academicSystem: 2 | 3, course: 'diploma' | 'degree', repaymentPeriod: number, interestRates: number, studyLength: number) {
+export function useCalculator(schoolFees: any, academicSystem: 2 | 3, course: 'diploma' | 'degree', repaymentPeriod: any, interestRates: any, studyLength: any) {
 
     // Calculate CPF Monthly Instalment & Total Payment Amount
     const [CPF_monthly_instalment_round, CPF_total_payment_amount] = CPFCalculator(schoolFees, academicSystem, course, repaymentPeriod, studyLength);
 
     // Calculate TFL Total Payment Amount + Monthly Instalment
-    const [TFL_monthly_instalment_round, TFL_total_payment_amount] = TFLCalculator(schoolFees, academicSystem, course, repaymentPeriod, interestRates, studyLength);
+    const [TFL_monthly_instalment_round, TFL_total_payment_amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = TFLCalculator(schoolFees, academicSystem, course, repaymentPeriod, interestRates, studyLength);
 
 
-    return [CPF_monthly_instalment_round, CPF_total_payment_amount, TFL_monthly_instalment_round, TFL_total_payment_amount];
+    return [CPF_monthly_instalment_round, CPF_total_payment_amount, TFL_monthly_instalment_round, TFL_total_payment_amount, TFL_principal_amount, TOTAL_CASH_AMOUNT];
 
 }
