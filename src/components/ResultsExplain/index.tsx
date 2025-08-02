@@ -8,16 +8,24 @@ import { useMemo } from 'react';
 interface ResultsExplainProps {
     cpfTotalRepaymentAmount: number;
     cpfWithdrawalLimit: number;
+    course: 'diploma' | 'degree';
+    schoolFees: number;
+    studyLength: number;
+    academicSystem: 2 | 3;
 }
 
 export function ResultsExplain ({
     cpfTotalRepaymentAmount,
-    cpfWithdrawalLimit
+    cpfWithdrawalLimit,
+    course,
+    schoolFees,
+    studyLength,
+    academicSystem
 }: ResultsExplainProps) {
 
     const isEligibleForWithdrawal = useMemo(() => {
-        return cpfTotalRepaymentAmount <= cpfWithdrawalLimit;
-    }, [cpfTotalRepaymentAmount, cpfWithdrawalLimit]);
+        return (schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit;
+    }, [schoolFees, studyLength, academicSystem, cpfWithdrawalLimit]);
 
 
     return (
@@ -106,7 +114,7 @@ export function ResultsExplain ({
                     <Grid.Col span={{ base: 12, md: 4 }}>
                         <Card withBorder radius="md" padding="lg" className={classes.card}>
                             <Title size="h2" ta="center" py="sm" c="teal">
-                                20 Years
+                                {course === 'diploma' ? 10 : 20} Years
                             </Title>
                         </Card>
                     </Grid.Col>

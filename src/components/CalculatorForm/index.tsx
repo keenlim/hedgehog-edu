@@ -1,6 +1,6 @@
 'use client'
 
-import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select} from '@mantine/core';
+import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select, Group} from '@mantine/core';
 import classess from './CalculatorForm.module.css';
 import { SelectableOptionButton } from '../Common/SelectableOptionButton';
 
@@ -272,6 +272,44 @@ export function CalculatorForm ({
                         size="lg"
                         className={classess.numberInput}
                     />
+                    <Text size="sm" c="dimmed">
+                        You may check the current interest rate for the MOE Tuition Fee Loan on the following websites:
+                    </Text>
+                    <List withPadding>
+                        <List.Item>
+                            <Group>
+                                <Text size="sm" c="dimmed">OCBC:</Text> 
+                                <Anchor
+                                    href="https://frankbyocbc.com/products/moe-interest-rate-change"
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    underline="hover"
+                                    className={classess.anchorText}
+                                    size="sm"
+                                    >
+                                        https://frankbyocbc.com/products/moe-interest-rate-change
+                                </Anchor>
+                            </Group>
+                        </List.Item>
+                        <List.Item>
+                            <Group>
+                                <Text size="sm" c="dimmed">DBS:</Text> 
+                                <Anchor
+                                    href="https://www.dbs.com.sg/personal/loans/promotions/sg-moeloanrates.page"
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    underline="hover"
+                                    size="sm"
+                                    className={classess.anchorText}>
+                                        https://www.dbs.com.sg/personal/loans/promotions/sg-moeloanrates.page
+                                </Anchor>
+                            </Group>
+                        </List.Item>
+                    </List>
+                    <Space h="md" />
+                    <Text size="sm" c="dimmed">
+                        Do note that interest rates for MOE Tuition Fee Loan will be revised on a half-yearly basis based on the 3-month compounded SORA
+                    </Text>
                 </Paper>
             </Box>
         </Center>

@@ -34,7 +34,7 @@ export default function CalculateApp() {
 
 
     const handleCalculation = () => {
-        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(schoolFees, academicSystem, course, repaymentPeriod, interestRates, studyLength);
+        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(schoolFees, academicSystem, course, repaymentPeriod, interestRates, studyLength, repaymentPlans, repaymentAmount);
         console.log("Final Calculation")
         console.log(CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount);
         setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
@@ -95,11 +95,17 @@ export default function CalculateApp() {
                         tflPrincipalAmount={TFL_principal_amount}
                         tflCashAmount={TFL_CASH_AMOUNT}
                         cpfWithdrawalLimit={Number(withdrawalLimit)}
+                        repaymentPlan={repaymentPlans}
+                        course={course}
                         handleEdit={() => setIsCalculationForm(true)}/>
             </Banner>
             <ResultsExplain 
-                cpfTotalRepaymentAmount={CPF_Total_Repayment_Amount}
-                cpfWithdrawalLimit={Number(withdrawalLimit)}/>
+                cpfTotalRepaymentAmount={Number(CPF_Total_Repayment_Amount)}
+                cpfWithdrawalLimit={Number(withdrawalLimit)}
+                course={course}
+                schoolFees={Number(schoolFees)}
+                studyLength={Number(studyLength)}
+                academicSystem={academicSystem}/>
             <Footer handleCalculation={handleCalculation} 
                     isCalculationForm={isCalculationForm}/>
         </div>)

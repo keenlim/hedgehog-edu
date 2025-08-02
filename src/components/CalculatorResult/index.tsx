@@ -12,6 +12,8 @@ interface CalculaterResultProps {
     tflPrincipalAmount: number;
     tflCashAmount: number;
     cpfWithdrawalLimit: number;
+    repaymentPlan: string | null; // 'repaymentAmount' | 'repaymentPeriod';
+    course: 'diploma' | 'degree';
     handleEdit: () => void;
 }
 
@@ -23,6 +25,8 @@ export function CalculatorResultDesktop({
     tflPrincipalAmount,
     tflCashAmount,
     cpfWithdrawalLimit,
+    repaymentPlan,
+    course,
     handleEdit,
 }: CalculaterResultProps) {
 
@@ -46,7 +50,7 @@ export function CalculatorResultDesktop({
 
                 <Grid.Col span={12}>
                     <Divider className="divider" my="md" size="md" label={
-                        <Text c="white" fw={500} size="lg" px="xs">Total payment amount *</Text>
+                        <Text c="white" fw={500} size="lg" px="xs">Total payment amount</Text>
                     } labelPosition="center" />
                 </Grid.Col>
 
@@ -72,15 +76,8 @@ export function CalculatorResultDesktop({
                                 Not Eligible
                             </Title>
                         </Center>   
-                        <Space h="xs" />
-                        <Center>
-                            <Text size="md" c="#f6d594">
-                                The lender's OA does not have sufficient savings to accommodate the indicated loan amount. 
-                            </Text>
-                        </Center>
                         </>
                     )}
-                    
                 </Grid.Col>
 
                 <Grid.Col span={6}>
@@ -91,35 +88,78 @@ export function CalculatorResultDesktop({
                     </Center>   
                     <Center pb="xs">
                         <Text size="md" c="#f6d594" className={classes.smallerText}>
-                            {tflPrincipalAmount ? `90% Loan Coverage: ${formatCurrency(tflPrincipalAmount)}` : 'NA'}
+                            {tflPrincipalAmount ? `${course === 'diploma' ? '75% ' : '90% '}Loan Coverage: ${formatCurrency(tflPrincipalAmount)}` : 'NA'}
                         </Text>
                         <IconPlus size={24} color="#f6d594" className={classes.iconPlus} />
                         <Text size="md" c="#f6d594">
-                            {tflCashAmount ? `10% Cash: ${formatCurrency(tflCashAmount)}` : 'NA'}
+                            {tflCashAmount ? `${course === 'diploma' ? '25% ' : '10% '} Cash: ${formatCurrency(tflCashAmount)}` : 'NA'}
                         </Text>
                     </Center>
                 </Grid.Col>
 
                 <Grid.Col span={12}>
                     <Divider className="divider" my="md" size="md" label={
-                        <Text c="white" fw={500} size="lg" px="xs">Monthly Instalment *</Text>
+                        <Text c="white" fw={500} size="lg" px="xs">{
+                            repaymentPlan === 'repaymentPeriod' ? 
+                                'Monthly Instalment' : 'Repayment Period'
+                        }</Text>
                     } labelPosition="center" />
                 </Grid.Col>
-
+    
                 <Grid.Col span={6}>
-                    <Center>
-                        <Title size="h1" className={classes.amountText}>
-                            {cpfMonthlyInstalment ? formatCurrency(cpfMonthlyInstalment): 'NA'}
-                        </Title>
-                    </Center>   
+                    {isEligibleForWithdrawal ? (
+                        <>
+                        <Center>
+                            <Title size="h1" className={classes.amountText}>
+                                {repaymentPlan === 'repaymentPeriod' ? (
+                                    cpfMonthlyInstalment ? `${formatCurrency(cpfMonthlyInstalment)}`: 'NA'
+                                ) : (
+                                    `${cpfMonthlyInstalment} months`
+                                )}
+                            </Title>
+                        </Center>   
+                        <Center>
+                            {repaymentPlan === 'repaymentPeriod' ? (
+                                <Text size="sm" c="#f6d594">
+                                    per month
+                                </Text>
+                            ) : null}
+                        </Center>
+                        </>
+                    ) : (
+                        <>
+                        <Center>
+                            <Title size="h1" className={classes.amountText}>
+                                Not Eligible
+                            </Title>
+                        </Center>   
+                        <Space h="xs" />
+                        <Center>
+                            <Text size="md" c="#f6d594">
+                                The lender's OA does not have sufficient savings to accommodate the indicated loan amount. 
+                            </Text>
+                        </Center>
+                        </>
+                    )}
                 </Grid.Col>
 
+                    
+
                 <Grid.Col span={6}>
                     <Center>
                         <Title size="h1" className={classes.amountText}>
-                            {tflMonthlyInstalment ? formatCurrency(tflMonthlyInstalment): 'NA'}
+                            {repaymentPlan === 'repaymentPeriod' ? (
+                                tflMonthlyInstalment ? `${formatCurrency(tflMonthlyInstalment)}` : 'NA'
+                            ) : `${tflMonthlyInstalment} months`}
                         </Title>
-                    </Center>   
+                    </Center>  
+                    <Center>
+                        {repaymentPlan === 'repaymentPeriod' ? (
+                            <Text size="sm" c="#f6d594">
+                                per month
+                            </Text>
+                        ) : null}
+                    </Center> 
                 </Grid.Col>
 
                 <Grid.Col span={12} mt="xs">
