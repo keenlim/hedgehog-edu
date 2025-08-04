@@ -23,6 +23,7 @@ import {
   type ArticleItem,
 } from "@/components/Common/ArticleCarousel";
 import { useEffect } from "react";
+import { IconArrowNarrowRight, IconCalculator} from "@tabler/icons-react";
 
 const ARTICLES: ArticleItem[] = [
   {
@@ -301,17 +302,38 @@ export function LandingPageComponent() {
           <Button
             component={Link}
             href="/calculate"
-            variant="filled"
-            color="teal"
-            size="lg"
-            radius="xl"
+            size="xl"
+            radius="md"
+            styles={{
+              root: {
+                backgroundColor: "#00665C", 
+                height: "100px",
+                width: "100%",
+                maxWidth: "400px",
+                fontSize: "24px",
+                fontWeight: 700,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              },
+              label: {
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+              },
+            }}
           >
-            Comparison calculator
+            <IconCalculator size="md"/>
+            Comparison Calculator
+            <IconArrowNarrowRight size="lg"/>
           </Button>
         </Group>
 
         <Space h="xl" />
 
+        <Title order={4} mb="md" ta="center">
+          Need more information?
+        </Title>
         <Grid gutter="lg">
           <Grid.Col span={{ base: 12, md: 4 }}>
             <Card withBorder radius="md" padding="lg">
