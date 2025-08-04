@@ -10,6 +10,7 @@ const RepaymentPlan = [
 ]
 
 interface CalculateFormProps {
+    form: any;
     course: 'diploma' | 'degree';
     handleCourse: ( value: 'diploma' | 'degree' ) => void;
     ns: 'yes' | 'no';
@@ -33,6 +34,7 @@ interface CalculateFormProps {
 }
 
 export function CalculatorForm ({
+    form,
     course,
     handleCourse,
     ns,
@@ -108,37 +110,42 @@ export function CalculatorForm ({
                         onClick={() => handleCourse('degree') }
                     />
 
-                    <Space h="lg" />
-                    <Text mb="md">
-                        Will you be serving National Service (NS)?
-                    </Text>
-                    <SelectableOptionButton 
-                        label="Yes"
-                        selected={ ns === 'yes' }
-                        onClick={() => handleNS('yes') }
-                    />
-                    <SelectableOptionButton 
-                        label="No"
-                        selected={ ns === 'no' }
-                        onClick={() => handleNS('no') }
-                    />
+                    {course === 'diploma' && (
+                        <>
+                            <Space h="lg" />
+                            <Text mb="md">
+                                Will you be serving National Service (NS)?
+                            </Text>
+                            <SelectableOptionButton 
+                                label="Yes"
+                                selected={ ns === 'yes' }
+                                onClick={() => handleNS('yes') }
+                            />
+                            <SelectableOptionButton 
+                                label="No"
+                                selected={ ns === 'no' }
+                                onClick={() => handleNS('no') }
+                            />
+                        </>
+                    )}
 
                     <Space h="lg" />
                     <Text mb="md">
                         School Fees per Term
                     </Text>
                     <NumberInput
-                        placeholder="Enter school fees per term e.g. 4000"
+                        placeholder="E.g. 4000"
                         prefix="SGD    "
                         required
                         allowDecimal
                         decimalScale={2}
-                        min={1000}
+                        min={100}
                         step={100}
                         value={schoolFees}
                         onChange={handleSchoolFees}
                         size="lg"
                         className={classess.numberInput}
+                        error={form.errors.schoolFees}
                     />
 
                     <Space h="lg" />
@@ -161,7 +168,7 @@ export function CalculatorForm ({
                         Length of Study (in years)
                     </Text>
                     <NumberInput
-                        placeholder="Length of study in years e.g. 3 years"
+                        placeholder="E.g. 3 years"
                         suffix="   years"
                         required
                         min={1}
@@ -171,6 +178,7 @@ export function CalculatorForm ({
                         onChange={handleStudyLength}
                         size="lg"
                         className={classess.numberInput}
+                        error={form.errors.studyLength}
                     />
 
                     <Space h="lg" />
@@ -178,17 +186,18 @@ export function CalculatorForm ({
                         Current Available Withdrawal Limit
                     </Text>
                     <NumberInput
-                        placeholder="Available Withdrawal Limit e.g. 10000"
+                        placeholder="E.g. 10000"
                         prefix="SGD    "
                         required
                         allowDecimal
                         decimalScale={2}
-                        min={100}
+                        min={1}
                         step={100}
                         value={withdrawalLimit}
                         onChange={handleWithdrawalLimit}
                         size="lg"
                         className={classess.numberInput}
+                        error={form.errors.withdrawalLimit}
                     />
                     <Space h="xs" />
                     <Text size="sm" c="dimmed">
@@ -213,6 +222,7 @@ export function CalculatorForm ({
                             onChange={(newValue) => handleRepaymentPlans(newValue)}
                             size="lg"
                             className={classess.dropdown}
+                            error={form.errors.repaymentPlans}
                     />
 
                     {repaymentPlans === 'repaymentPeriod' ? (
@@ -222,7 +232,7 @@ export function CalculatorForm ({
                                 Estimated Repayment Period
                             </Text>
                             <NumberInput
-                                placeholder="Length of Repayment in years "
+                                placeholder="E.g. 3 years"
                                 suffix="   years"
                                 required
                                 min={1}
@@ -232,6 +242,7 @@ export function CalculatorForm ({
                                 onChange={handleRepaymentPeriod}
                                 size="lg"
                                 className={classess.numberInput}
+                                error={form.errors.repaymentPeriod}
                             />
                         </>
                     ) : (
@@ -241,7 +252,7 @@ export function CalculatorForm ({
                                 Estimated Monthly Repayment Amount
                             </Text>
                             <NumberInput
-                                placeholder="Estimated Monthly Repayment Amount"
+                                placeholder="E.g. 500"
                                 prefix="SGD     "
                                 required
                                 min={100}
@@ -250,6 +261,7 @@ export function CalculatorForm ({
                                 onChange={handleRepaymentAmount}
                                 size="lg"
                                 className={classess.numberInput}
+                                error={form.errors.repaymentAmount}
                             />
                         </>
                     )}
@@ -259,7 +271,7 @@ export function CalculatorForm ({
                         Interest Rate for MOE Tuition Fee Loan (TFL)
                     </Text>
                     <NumberInput
-                        placeholder="Interest Rates for MOE TFL e.g. 4.2%"
+                        placeholder="4.2%"
                         suffix="   %"
                         required
                         allowDecimal
@@ -271,6 +283,7 @@ export function CalculatorForm ({
                         onChange={handleInterestRates}
                         size="lg"
                         className={classess.numberInput}
+                        error={form.errors.interestRates}
                     />
                     <Text size="sm" c="dimmed">
                         You may check the current interest rate for the MOE Tuition Fee Loan on the following websites:

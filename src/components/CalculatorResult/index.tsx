@@ -14,6 +14,9 @@ interface CalculaterResultProps {
     cpfWithdrawalLimit: number;
     repaymentPlan: string | null; // 'repaymentAmount' | 'repaymentPeriod';
     course: 'diploma' | 'degree';
+    schoolFees: number;
+    studyLength: number;
+    academicSystem: 2 | 3;
     handleEdit: () => void;
 }
 
@@ -27,12 +30,18 @@ export function CalculatorResultDesktop({
     cpfWithdrawalLimit,
     repaymentPlan,
     course,
+    schoolFees,
+    studyLength, 
+    academicSystem,
     handleEdit,
 }: CalculaterResultProps) {
 
     const isEligibleForWithdrawal = useMemo(() => {
-        return cpfTotalRepaymentAmount <= cpfWithdrawalLimit;
-    }, [cpfTotalRepaymentAmount, cpfWithdrawalLimit]);
+        console.log((schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit)
+        return (schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit;
+    }, [schoolFees, studyLength, academicSystem, cpfWithdrawalLimit]);
+
+
 
     return (
         <div className={classes.resultsBox}>

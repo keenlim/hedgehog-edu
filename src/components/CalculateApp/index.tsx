@@ -7,20 +7,39 @@ import { Footer } from "@/components/Common/Footer";
 import { useCalculator } from '@/hooks/useCalculator';
 import { CalculatorResultDesktop } from '../CalculatorResult';
 import { ResultsExplain } from '../ResultsExplain';
+import { useForm } from '@mantine/form';
 
 export default function CalculateApp() {
-    // State variables for the calculator form
-    const [course, setCourse] = useState<'diploma' | 'degree'>('diploma');
-    const [ns, setNS] = useState<'yes' | 'no'>('yes');
-    const [schoolFees, setSchoolFees] = useState<string | number>(4200);
-    const [academicSystem, setAcademicSystem] = useState<2 | 3>(2);
-    const [studyLength, setStudyLength] = useState<string | number>(3);
-    const [withdrawalLimit, setWithdrawalLimit] = useState<string | number>(10000);
-    const [interestRates, setInterestRates] = useState<string | number>(4.20);
-    const [repaymentPlans, setRepaymentPlans] = useState<string | null>('repaymentPeriod');
-    const [repaymentPeriod, setRepaymentPeriod] = useState<string | number>(12);
-    const [repaymentAmount, setRepaymentAmount] = useState<string | number>(100);
-    const [isCalculationForm, setIsCalculationForm] = useState<boolean>(true);
+    // Define the form 
+    const form = useForm({
+        initialValues: {
+            course: 'diploma' as 'diploma' | 'degree',
+            ns: 'yes' as 'yes' | 'no',
+            schoolFees: '' as string | number, 
+            academicSystem: 2 as 2 | 3,
+            studyLength: '' as string | number,
+            withdrawalLimit: '' as string | number,
+            interestRates: '' as string | number,
+            repaymentPlans: 'repaymentPeriod' as string | null,
+            repaymentPeriod: '' as string | number,
+            repaymentAmount: '' as string | number,
+        },
+        validate: {
+            schoolFees: (v) => (v === '' || +v <= 0 ? 'Enter a valid school fees amount': null),
+            studyLength: (v) => (v === '' || +v < 1 ? 'At least 1 year of study': null),
+            withdrawalLimit: (v) => (v === '' || +v < 0 ? 'Withdrawal limit must be a positive number': null),
+            interestRates: (v) => (v === '' || +v < 0 || +v > 100 ? 'Interests rate must be between 0% and 100 %' : null),
+            repaymentPlans: (v) => (v === null ? 'Select a plan' : null),
+            repaymentPeriod: (v, vals) => (
+                vals.repaymentPlans === 'repaymentPeriod' && (v === '' || +v < 1 ? 'At least 1 year' : null)
+            ),
+            repaymentAmount: (v, vals) => (
+                vals.repaymentPlans === 'repaymentAmount' && (v === '' || +v < 1 ? 'At least $1' : null)
+            )
+        },
+    });
+    
+    // States to store the results
     const [CPF_Monthly_Instalment, setCPF_Monthly_Instalment] = useState<number>(0);
     const [CPF_Total_Repayment_Amount, setCPF_Total_Repayment_Amount] = useState<number>(0);
     const [TFL_Monthly_Instalment, setTFL_Monthly_Instalment] = useState<number>(0);
@@ -28,15 +47,29 @@ export default function CalculateApp() {
     const [TFL_principal_amount, setTFL_principal_amount] = useState<number>(0);
     const [TFL_CASH_AMOUNT, setTFL_CASH_AMOUNT] = useState<number>(0);
 
+    // Local state to toggle between the Results Page and the Calculation Form
+    const [isCalculationForm, setIsCalculationForm] = useState<boolean>(true);
+
     useEffect(() => {
         window.scrollTo(0, 0);
       }, [isCalculationForm]); // only on mount
 
 
     const handleCalculation = () => {
-        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(schoolFees, academicSystem, course, repaymentPeriod, interestRates, studyLength, repaymentPlans, repaymentAmount);
+        // Validate the form values 
+        const isValid = form.validate().hasErrors === false;
+        console.log(isValid)
+        if (!isValid) {
+            console.log("Validation is not valid")
+            return;
+        }
+        console.log(form.values.course)
+        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
+
         console.log("Final Calculation")
         console.log(CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount);
+
+        // Set the results to the state variables
         setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
         setCPF_Total_Repayment_Amount(CPF_Total_Repayment_Amount);
         setTFL_Monthly_Instalment(TFL_Monthly_Instalment);
@@ -56,26 +89,27 @@ export default function CalculateApp() {
                 subtitle = "education financing"
                 title = "Education Loan Calculator" />
             <CalculatorForm 
-                course={course}
-                handleCourse={setCourse}
-                ns={ns}
-                handleNS={setNS}
-                schoolFees={schoolFees}
-                handleSchoolFees={setSchoolFees}
-                academicSystem={academicSystem}
-                handleAcademicSystem={setAcademicSystem}
-                studyLength={studyLength}
-                handleStudyLength={setStudyLength}
-                withdrawalLimit={withdrawalLimit}
-                handleWithdrawalLimit={setWithdrawalLimit}
-                repaymentPlans={repaymentPlans}
-                handleRepaymentPlans={setRepaymentPlans}
-                repaymentPeriod={repaymentPeriod}
-                handleRepaymentPeriod={setRepaymentPeriod}
-                repaymentAmount={repaymentAmount}
-                handleRepaymentAmount={setRepaymentAmount}
-                interestRates={interestRates}
-                handleInterestRates={setInterestRates}
+                form={form}
+                course={form.values.course}
+                handleCourse={(v) => form.setFieldValue('course', v)}
+                ns={form.values.ns}
+                handleNS={(v) => form.setFieldValue('ns', v)}
+                schoolFees={form.values.schoolFees}
+                handleSchoolFees={(v) => form.setFieldValue('schoolFees', v)}
+                academicSystem={form.values.academicSystem}
+                handleAcademicSystem={(v) => form.setFieldValue('academicSystem', v)}
+                studyLength={form.values.studyLength}
+                handleStudyLength={(v) => form.setFieldValue('studyLength', v)}
+                withdrawalLimit={form.values.withdrawalLimit}
+                handleWithdrawalLimit={(v) => form.setFieldValue('withdrawalLimit', v)}
+                repaymentPlans={form.values.repaymentPlans}
+                handleRepaymentPlans={(v) => form.setFieldValue('repaymentPlans', v)}
+                repaymentPeriod={form.values.repaymentPeriod}
+                handleRepaymentPeriod={(v) => form.setFieldValue('repaymentPeriod', v)}
+                repaymentAmount={form.values.repaymentAmount}
+                handleRepaymentAmount={(v) => form.setFieldValue('repaymentAmount', v)}
+                interestRates={form.values.interestRates}
+                handleInterestRates={(v) => form.setFieldValue('interestRates', v)}
             />
             <Footer handleCalculation={handleCalculation} 
                     isCalculationForm={isCalculationForm}/>
@@ -94,18 +128,21 @@ export default function CalculateApp() {
                         tflTotalRepaymentAmount={TFL_Total_Repayment_Amount}
                         tflPrincipalAmount={TFL_principal_amount}
                         tflCashAmount={TFL_CASH_AMOUNT}
-                        cpfWithdrawalLimit={Number(withdrawalLimit)}
-                        repaymentPlan={repaymentPlans}
-                        course={course}
+                        cpfWithdrawalLimit={Number(form.values.withdrawalLimit)}
+                        repaymentPlan={form.values.repaymentPlans}
+                        course={form.values.course}
+                        schoolFees={Number(form.values.schoolFees)}
+                        studyLength={Number(form.values.studyLength)}
+                        academicSystem={form.values.academicSystem}
                         handleEdit={() => setIsCalculationForm(true)}/>
             </Banner>
             <ResultsExplain 
                 cpfTotalRepaymentAmount={Number(CPF_Total_Repayment_Amount)}
-                cpfWithdrawalLimit={Number(withdrawalLimit)}
-                course={course}
-                schoolFees={Number(schoolFees)}
-                studyLength={Number(studyLength)}
-                academicSystem={academicSystem}/>
+                cpfWithdrawalLimit={Number(form.values.withdrawalLimit)}
+                course={form.values.course}
+                schoolFees={Number(form.values.schoolFees)}
+                studyLength={Number(form.values.studyLength)}
+                academicSystem={form.values.academicSystem}/>
             <Footer handleCalculation={handleCalculation} 
                     isCalculationForm={isCalculationForm}/>
         </div>)

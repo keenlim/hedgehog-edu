@@ -14,7 +14,7 @@
       <Box>
         <header className={classes.header}>
           <Group justify="flex-start" h="100%">
-            <Image src="/cpf-logo.png" height={80} width={80} alt="Logo of CPF" />
+            <Image src="/hedhehog_logo.png" height={75} width={75} alt="Logo of CPF" />
             <Group h="100%">
               <Title className={classes.title}>Education Financing</Title>
             </Group>
