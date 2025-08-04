@@ -25,6 +25,7 @@ import {
 } from "@/components/Common/ArticleCarousel";
 import { useEffect } from "react";
 import { IconArrowNarrowRight, IconCalculator } from "@tabler/icons-react";
+import { TooltipInfo } from "../Common/Tooltip";
 
 const ARTICLES: ArticleItem[] = [
   {
@@ -276,13 +277,16 @@ export function LandingPageComponent() {
                   </>
                 }
               />
-
               <Row
                 feature="Interest Rate"
                 left="2.5%"
-                right="3 months SORA + 1.5 percentage point"
+                right={
+                  <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                    3 months SORA + 1.5%
+                    <TooltipInfo label="3-month compounded Singapore Overnight Rate Average (3M SORA) plus 1.5 percentage points or such other rates as may be determined from time to time by the bank" />
+                  </span>
+                }
               />
-
               <Row
                 feature="Interest Accrual"
                 left={
@@ -293,7 +297,7 @@ export function LandingPageComponent() {
                 }
                 right={
                   <>
-                    Interest‑free during course of study, interest accrues after
+                    0% interest during course of study, interest accrues after
                     graduation
                   </>
                 }
