@@ -280,7 +280,7 @@ export function LandingPageComponent() {
               <Row
                 feature="Interest Rate"
                 left="2.5%"
-                right="3 months SORA + 1.5 percentage point"
+                right="3 months SORA + 1.5%"
               />
 
               <Row
@@ -293,7 +293,7 @@ export function LandingPageComponent() {
                 }
                 right={
                   <>
-                    Interest‑free during course of study, interest accrues after
+                    0% interest during course of study, interest accrues after
                     graduation
                   </>
                 }
