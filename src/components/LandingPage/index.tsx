@@ -515,7 +515,21 @@ export function LandingPageComponent() {
               options?
             </Accordion.Control>
             <Accordion.Panel>
-              tbc
+              <p>
+                The CPF Education Loan requires borrowers to commence repayment one year after graduation or termination of studies, whichever is earlier. This is a fixed timeline that applies to all borrowers.
+              </p>
+              <p>
+                In comparison, the MOE Tuition Fee Loan offers more flexible repayment options:
+              </p>
+              <ul>
+                <li>For autonomous university students, repayment can begin within 2 years after graduation.</li>
+                <li>For polytechnic students, repayment can begin within 1 year after graduation.</li>
+              </ul>
+              <p>
+                For the CPF Education Loan, while deferment of repayment is possible for scenarios such as serving National Service (NS), interest will still continue to accrue.
+                Meanwhile, for the MOE Tuition Fee Loan, you may appeal for deferment of repayment and interest due to serving NS, further studies, or financial difficulties.
+                Interest will not accrue during deferment.
+              </p>
             </Accordion.Panel>
           </Accordion.Item>
 
@@ -525,7 +539,23 @@ export function LandingPageComponent() {
               to other loan options?
             </Accordion.Control>
             <Accordion.Panel>
-              tbc
+              <p>
+                Both the CPF Education Loan and the MOE Tuition Fee Loan have set the same minimum monthly instalment amount of <strong>$100</strong>. However, the actual monthly instalment amount for both loans will be calculated based on several factors:
+              </p>
+
+              <ul>
+                <li>Total loan amount</li>
+                <li>Chosen repayment period</li>
+                <li>Applicable interest rate</li>
+              </ul>
+
+              <p>
+                Borrowers can use our{' '}
+                <Anchor href="/calculate" underline="hover">
+                  Education Loan Comparison Calculator
+                </Anchor>{' '}
+                to compute the estimated monthly instalment for both loans based on their circumstances.
+              </p>
             </Accordion.Panel>
           </Accordion.Item>
 
@@ -534,7 +564,47 @@ export function LandingPageComponent() {
               How does the education loan repayment work?
             </Accordion.Control>
             <Accordion.Panel>
-              tbc
+              <p>
+                For the CPF Education Loan, the borrower has to start repaying the loan one year after graduation or termination of studies, whichever is earlier.
+                The borrower will receive a notification on the loan repayment details generally about three months before it commences.
+                If the borrower intends to start the repayment earlier, they can contact us through{' '}
+                <Anchor
+                  href="https://www.cpf.gov.sg/service/write-to-us"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="hover"
+                >
+                  Write to us
+                </Anchor>{' '}
+                using their Singpass.
+              </p>
+
+              <p>
+                Repayment must be made in cash, either in one lump sum or via monthly instalments over a maximum of 12 years.
+                The monthly instalment rate will be computed based on the loan amount and chosen repayment period.
+                The borrower cannot use their own CPF savings to make repayments to the lender’s CPF Account.
+              </p>
+
+              <p>
+                Borrowers are encouraged to repay the full loan as early as possible to reduce interest payable and to allow the account holder to use their CPF monies for housing and retirement needs.
+                This can be done by making lump sum repayments or choosing a higher monthly instalment amount via{' '}
+                <Anchor
+                  href="https://www.cpf.gov.sg/member/tools-and-services/forms-e-applications/manage-education-loan-repayments"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="hover"
+                >
+                  Manage Education Loan Repayments
+                </Anchor>.
+              </p>
+
+              <p>
+                Borrowers can use our{' '}
+                <Anchor href="/calculate" underline="hover">
+                  Education Loan Comparison Calculator
+                </Anchor>{' '}
+                to compute how long it will take to repay the loan or to work out a suitable loan repayment plan.
+              </p>
             </Accordion.Panel>
           </Accordion.Item>
         </Accordion>
