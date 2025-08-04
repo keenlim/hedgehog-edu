@@ -12,6 +12,7 @@ import { useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import classes from './ArticleCarousel.module.css';
+import { motion } from 'motion/react';
 
 export type ArticleItem = {
   id: string;
@@ -41,50 +42,57 @@ export function ArticleCarousel({ title = 'Related reads', items }: Props) {
   if (isSm) slideSize = '100%';      // 1-up (overrides md when both true)
 
   return (
-    <section className={classes.wrap} id="articles">
-      <div className={classes.header}>
-        <Text className={classes.kicker}>Articles</Text>
-        <Text size="xl" className={classes.title}>{title}</Text>
-      </div>
+      <section className={classes.wrap} id="articles">
+        <div className={classes.header}>
+          <Text className={classes.kicker}>Articles</Text>
+          <Text size="xl" className={classes.title}>{title}</Text>
+        </div>
 
-      <Carousel
-        withIndicators
-        nextControlIcon={<IconChevronRight />}
-        previousControlIcon={<IconChevronLeft />}
-        slideGap="md"
-        slideSize={slideSize}
-      >
-        {items.map((a) => (
-          <Carousel.Slide key={a.id}>
-            <Card
-              withBorder
-              radius="md"
-              p="md"
-              className={classes.card}
-              component="a"
-              href={a.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className={classes.image}>
-                <Image src={a.image} alt={a.title} radius="md" />
-              </div>
+        <Carousel
+          withIndicators
+          nextControlIcon={<IconChevronRight />}
+          previousControlIcon={<IconChevronLeft />}
+          slideGap="lg"
+          slideSize={slideSize}
+        >
+          {items.map((a) => (
+            <Carousel.Slide key={a.id}>
+              <motion.div
+                whileHover={{ scale: 1.01 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
+              <Card
+                withBorder
+                radius="md"
+                p="md"
+                m="xs"
+                className={classes.card}
+                component="a"
+                href={a.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                shadow="sm"
+              >
+                <div className={classes.image}>
+                  <Image src={a.image} alt={a.title} radius="md" />
+                </div>
 
-              <Stack gap={4}>
-                <Text className={classes.badge}>{a.category}</Text>
-                <Text className={classes.cardTitle}>{a.title}</Text>
-                <Text className={classes.excerpt}>{a.excerpt}</Text>
-              </Stack>
+                <Stack gap={4}>
+                  <Text className={classes.badge}>{a.category}</Text>
+                  <Text className={classes.cardTitle}>{a.title}</Text>
+                  <Text className={classes.excerpt}>{a.excerpt}</Text>
+                </Stack>
 
-              <Group gap="xs" mt="sm" className={classes.meta}>
-                <Text>{a.date}</Text>
-                <Text>•</Text>
-                <Text>{a.readTime}</Text>
-              </Group>
-            </Card>
-          </Carousel.Slide>
-        ))}
-      </Carousel>
-    </section>
+                <Group gap="xs" mt="sm" className={classes.meta}>
+                  <Text>{a.date}</Text>
+                  <Text>•</Text>
+                  <Text>{a.readTime}</Text>
+                </Group>
+              </Card>
+              </motion.div>
+            </Carousel.Slide>
+          ))}
+        </Carousel>
+      </section>
   );
 }

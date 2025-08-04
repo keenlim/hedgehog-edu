@@ -12,6 +12,8 @@ import { useRouter } from 'next/navigation';
 import { ReactNode } from 'react';
 import { IconChevronLeft } from "@tabler/icons-react";
 
+import { motion, Variants } from 'motion/react';
+
 interface BannerProps {
     /*Path to navigate back to (or can be override wiht onBack) */
     backRoute?: string | null;
@@ -44,8 +46,29 @@ export function Banner({
         }
     }
 
+    // Define transition variants for motion
+    const container: Variants = {
+        hidden: {x: -100, opacity: 0},
+        show: {
+            x: 0,
+            opacity: 1, 
+            transition: {
+                // stagger children by 0.2s
+                when: "beforeChildren",
+                staggerChildren: 0.2,
+                duration: 0.8,
+                ease: "easeInOut"
+            },
+        },
+    };
+
+
     return (
-        <div className={classes.banner}>
+        <motion.div 
+            className={classes.banner}
+            initial="hidden"
+            animate="show"
+            variants={container}>
             {backLabel && (backRoute || onBack) && (
                 <Group>
                     <Button leftSection={backIcon} 
@@ -78,7 +101,7 @@ export function Banner({
                 </div>
             )}
             
-        </div>
+        </motion.div>
         
     )
 }
