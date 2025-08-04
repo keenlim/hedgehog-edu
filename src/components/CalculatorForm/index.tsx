@@ -238,7 +238,7 @@ export function CalculatorForm ({
                                 placeholder="E.g. 3 years"
                                 suffix="   years"
                                 required
-                                min={1}
+                                min={0}
                                 step={1}
                                 max={50}
                                 value={repaymentPeriod}
