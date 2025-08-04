@@ -24,6 +24,7 @@ export function ResultsExplain ({
 }: ResultsExplainProps) {
 
     const isEligibleForWithdrawal = useMemo(() => {
+        console.log((schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit)
         return (schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit;
     }, [schoolFees, studyLength, academicSystem, cpfWithdrawalLimit]);
 

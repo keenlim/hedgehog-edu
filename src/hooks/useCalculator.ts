@@ -23,6 +23,10 @@ export function CPFCalculatorAmount(schoolFees: number,
  
      // CPF repayment starts 1 year after graduation
      const CPF_total_loan = CPF_principal_amount * (1 + CPF_INTEREST_RATE)**(1 + (1/academicSystem));
+
+     if (TOTAL_REPAYMENT_PERIOD_MONTHS === 0) {
+        return [CPF_total_loan, CPF_total_loan];
+     }
  
      // Calculate CPF Monthly Instalment
      const CPF_monthly_interest_rate = (1 + CPF_INTEREST_RATE) ** (1/12) - 1; // Convert annual interest rate to monthly
@@ -88,6 +92,9 @@ export function TFLCalculatorAmount(schoolFees: number,
         TFL_principal_amount = LOAN_LIMIT + TFL_principal_amount;
     }
     console.log(TFL_principal_amount);
+    if (TOTAL_REPAYMENT_PERIOD_MONTHS === 0) {
+        return [TFL_principal_amount + TOTAL_CASH_AMOUNT, TFL_principal_amount + TOTAL_CASH_AMOUNT, TFL_principal_amount, TOTAL_CASH_AMOUNT];
+    }
 
     // Calculate TFL Monthly Instalment
     const TFL_monthly_interest_rate = (1 + TFL_INTEREST_RATE) ** (1/12) - 1; // Convert annual interest rate to monthly
