@@ -13,6 +13,7 @@ interface CalculaterResultProps {
     tflCashAmount: number;
     cpfWithdrawalLimit: number;
     repaymentPlan: string | null; // 'repaymentAmount' | 'repaymentPeriod';
+    repaymentPeriod?: number; // Optional, only if repaymentPlan is 'repaymentPeriod'
     course: 'diploma' | 'degree';
     schoolFees: number;
     studyLength: number;
@@ -29,6 +30,7 @@ export function CalculatorResultDesktop({
     tflCashAmount,
     cpfWithdrawalLimit,
     repaymentPlan,
+    repaymentPeriod,
     course,
     schoolFees,
     studyLength, 
@@ -110,7 +112,7 @@ export function CalculatorResultDesktop({
                     <Divider className="divider" my="md" size="md" label={
                         <Text c="white" fw={500} size="lg" px="xs">{
                             repaymentPlan === 'repaymentPeriod' ? 
-                                'Monthly Instalment' : 'Repayment Period'
+                                'Each month, you will pay' : 'Repayment Period'
                         }</Text>
                     } labelPosition="center" />
                 </Grid.Col>
@@ -130,7 +132,7 @@ export function CalculatorResultDesktop({
                         <Center>
                             {repaymentPlan === 'repaymentPeriod' ? (
                                 <Text size="sm" c="#f6d594">
-                                    per month
+                                    for {repaymentPeriod ? (repaymentPeriod > 12 ? 12 : repaymentPeriod): null} years
                                 </Text>
                             ) : null}
                         </Center>
@@ -165,7 +167,11 @@ export function CalculatorResultDesktop({
                     <Center>
                         {repaymentPlan === 'repaymentPeriod' ? (
                             <Text size="sm" c="#f6d594">
-                                per month
+                                for {repaymentPeriod ? 
+                                    (repaymentPeriod > (course === 'diploma' ? 10 : 20) ? 
+                                    (course === 'diploma' ? 10 : 20) 
+                                    : repaymentPeriod) : null
+                                } years
                             </Text>
                         ) : null}
                     </Center> 
