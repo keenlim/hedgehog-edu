@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Carousel } from '@mantine/carousel';
 import {
   Card,
@@ -62,8 +61,10 @@ export function ArticleCarousel({ title = 'Related reads', items }: Props) {
               radius="md"
               p="md"
               className={classes.card}
-              component={Link}
+              component="a"
               href={a.href}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div className={classes.image}>
                 <Image src={a.image} alt={a.title} radius="md" />
