@@ -1,9 +1,10 @@
 'use client'
 
-import { Card, Center, Grid, Space, Text, Title } from '@mantine/core';
+import { Button, Card, Center, Divider, Grid, Group, Space, Text, Title } from '@mantine/core';
 import classes from './ResultsExplain.module.css';
 import { formatCurrency } from '@/utils/format';
 import { useMemo } from 'react';
+import { IconChevronRight } from '@tabler/icons-react';
 
 interface ResultsExplainProps {
     cpfTotalRepaymentAmount: number;
@@ -27,6 +28,14 @@ export function ResultsExplain ({
         console.log((schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit)
         return (schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit;
     }, [schoolFees, studyLength, academicSystem, cpfWithdrawalLimit]);
+
+    const handleClickCPF = () => {
+        window.open("https://www.cpf.gov.sg/member/tools-and-services/forms-e-applications/apply-for-cpf-education-loan", '_blank');
+    }
+
+    const handleClickMOE = () => {
+        window.open("https://www.moe.gov.sg/financial-matters/government-loan-schemes/tuition-fee-loan", '_blank');
+    }
 
 
     return (
@@ -101,27 +110,58 @@ export function ResultsExplain ({
                     <Grid.Col span={12}>
                         <Center py="md">
                             <Title size="h2">
-                                Maximum Repayment Period
+                                When Interest Starts to Accrue
                             </Title>
                         </Center>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, md: 4 }}>
                         <Card withBorder radius="md" padding="lg" className={classes.card}>
-                            <Title size="h2" ta="center" py="sm" c="teal">
-                                12 Years
-                            </Title>
+                            <Text size="md" py="sm">
+                                <strong>Immediately</strong> after deduction of school fees from CPF OA
+                            </Text>
                         </Card>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, md: 4 }}>
                         <Card withBorder radius="md" padding="lg" className={classes.card}>
-                            <Title size="h2" ta="center" py="sm" c="teal">
-                                {course === 'diploma' ? 10 : 20} Years
-                            </Title>
+                            <Text size="lg" ta="center" py="sm">
+                                <strong>After graduation</strong>
+                            </Text>
                         </Card>
+                    </Grid.Col>
+
+                    <Grid.Col span={12}>
+                        <Group align="center" style={{ width: '100%' }}>
+                            <Divider style={{ flex: 1, backgroundColor: '#aab' }} />
+                            <Divider
+                                orientation="vertical"
+                                style={{ height: 24, width: 1, backgroundColor: '#aab' }}
+                            />
+                            <Divider style={{ flex: 1, backgroundColor: '#aab' }} />
+                        </Group>
+                    </Grid.Col>
+                    
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Button variant="filled" 
+                                color="#10605f" 
+                                fullWidth 
+                                rightSection={<IconChevronRight />}
+                                size="xl"
+                                justify="space-between"
+                                radius="md"
+                                onClick={handleClickCPF}>Apply for CPF Education Loan</Button>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Button variant="filled" 
+                                color="#10605f" 
+                                fullWidth 
+                                rightSection={<IconChevronRight />}
+                                size="xl"
+                                justify="space-between"
+                                radius="md"
+                                onClick={handleClickMOE}>Apply for MOE Tuition Fee Loan</Button>
                     </Grid.Col>
                 </Grid>
             </Center>
-
         </div>
     )
 }

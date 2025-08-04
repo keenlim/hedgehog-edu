@@ -61,7 +61,7 @@ export function CalculatorResultDesktop({
 
                 <Grid.Col span={12}>
                     <Divider className="divider" my="md" size="md" label={
-                        <Text c="white" fw={500} size="lg" px="xs">Total payment amount</Text>
+                        <Text c="white" fw={500} size="lg" px="xs">In total, you will owe</Text>
                     } labelPosition="center" />
                 </Grid.Col>
 
@@ -153,8 +153,6 @@ export function CalculatorResultDesktop({
                         </>
                     )}
                 </Grid.Col>
-
-                    
 
                 <Grid.Col span={6}>
                     <Center>
