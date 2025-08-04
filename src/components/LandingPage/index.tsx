@@ -23,7 +23,7 @@ import {
   type ArticleItem,
 } from "@/components/Common/ArticleCarousel";
 import { useEffect } from "react";
-import { IconArrowNarrowRight, IconCalculator} from "@tabler/icons-react";
+import { IconArrowNarrowRight, IconCalculator } from "@tabler/icons-react";
 
 const ARTICLES: ArticleItem[] = [
   {
@@ -306,7 +306,7 @@ export function LandingPageComponent() {
             radius="md"
             styles={{
               root: {
-                backgroundColor: "#00665C", 
+                backgroundColor: "#00665C",
                 height: "100px",
                 width: "100%",
                 maxWidth: "400px",
@@ -323,9 +323,9 @@ export function LandingPageComponent() {
               },
             }}
           >
-            <IconCalculator size="md"/>
+            <IconCalculator size="md" />
             Comparison Calculator
-            <IconArrowNarrowRight size="lg"/>
+            <IconArrowNarrowRight size="lg" />
           </Button>
         </Group>
 
@@ -336,14 +336,25 @@ export function LandingPageComponent() {
         </Title>
         <Grid gutter="lg">
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Title order={6} mb="xs">
-                CPF Education Loan
-              </Title>
-              <Text size="sm" c="dimmed">
-                Find out more about CPF EDL in our brochure
-              </Text>
-              <Space h="sm" />
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 150,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Title order={6} mb="xs">
+                  CPF Education Loan
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Find out more about CPF EDL in our brochure
+                </Text>
+              </div>
               <Anchor
                 href="#"
                 className={classes.resourceLink}
@@ -355,14 +366,25 @@ export function LandingPageComponent() {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Title order={6} mb="xs">
-                MOE Tuition Fee Loan
-              </Title>
-              <Text size="sm" c="dimmed">
-                Find out more about MOE TFL on their website
-              </Text>
-              <Space h="sm" />
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 150,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Title order={6} mb="xs">
+                  MOE Tuition Fee Loan
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Find out more about MOE TFL on their website
+                </Text>
+              </div>
               <Anchor
                 href="#"
                 className={classes.resourceLink}
@@ -374,14 +396,25 @@ export function LandingPageComponent() {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Title order={6} mb="xs">
-                Forms and Applications
-              </Title>
-              <Text size="sm" c="dimmed">
-                Find the relevant application forms and documents you’ll need
-              </Text>
-              <Space h="sm" />
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 150,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Title order={6} mb="xs">
+                  Forms and Applications
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Find the relevant application forms and documents you’ll need
+                </Text>
+              </div>
               <Anchor
                 href="#"
                 className={classes.resourceLink}
