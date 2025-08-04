@@ -15,6 +15,7 @@ import {
   Table,
   Text,
   Title,
+  Accordion,
 } from "@mantine/core";
 import classes from "./LandingPage.module.css";
 
@@ -483,16 +484,60 @@ export function LandingPageComponent() {
           FAQs
         </Title>
 
-        <Paper radius="md" p="xl" withBorder className={classes.note}>
-          <Title order={5} mb="sm">
-            Common misconceptions
-          </Title>
-          <List withPadding>
-            <List.Item>
-              CPF Board allows later repayment compared to other loan options.
-            </List.Item>
-          </List>
-        </Paper>
+        <Title order={5} mb="sm" ta="center">
+          Common questions
+        </Title>
+
+        <Accordion
+          variant="default"
+          radius="md"
+          chevronPosition="right"
+          transitionDuration={200}
+          styles={{
+            item: {
+              border: "1px solid #C4D7D1",
+              borderRadius: "8px",
+              marginBottom: "12px",
+            },
+            control: {
+              padding: "16px",
+              fontSize: "16px",
+              fontWeight: 500,
+            },
+            chevron: {
+              color: "#00544F",
+            },
+          }}
+        >
+          <Accordion.Item value="repayment">
+            <Accordion.Control>
+              Does CPF Board allow later repayment compared to other loan
+              options?
+            </Accordion.Control>
+            <Accordion.Panel>
+              tbc
+            </Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="instalments">
+            <Accordion.Control>
+              Does CPF Education Loan offers lower monthly instalments compared
+              to other loan options?
+            </Accordion.Control>
+            <Accordion.Panel>
+              tbc
+            </Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="eduloan">
+            <Accordion.Control>
+              How does the education loan repayment work?
+            </Accordion.Control>
+            <Accordion.Panel>
+              tbc
+            </Accordion.Panel>
+          </Accordion.Item>
+        </Accordion>
       </section>
       <section className={classes.section}>
         <ArticleCarousel items={ARTICLES} />
