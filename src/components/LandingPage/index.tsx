@@ -142,55 +142,103 @@ export function LandingPageComponent() {
 
         <Grid gutter="lg">
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Consider all the financing options that are available for you
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Are you eligible for any additional financial assistance or
-                scholarships?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Consider all the financing options that are available for you
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Are you eligible for any additional financial assistance or
+                  scholarships?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Determine if using lenders’ savings impacts their retirement
-                plans
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Do they have sufficient CPF savings for them to meet their
-                retirement needs?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Determine if using lenders’ savings impacts their retirement
+                  plans
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Do they have sufficient CPF savings for them to meet their
+                  retirement needs?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Work out your optimal loan repayment period
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Which repayment schedule better suits your anticipated financial
-                situation?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Work out your optimal loan repayment period
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Which repayment schedule better suits your anticipated
+                  financial situation?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Assess your repayment options and the associated risks
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Which option provides the flexibility you need when
-                circumstances change?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Assess your repayment options and the associated risks
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Which option provides the flexibility you need when
+                  circumstances change?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
         </Grid>
@@ -356,9 +404,10 @@ export function LandingPageComponent() {
                 </Text>
               </div>
               <Anchor
-                href="#"
+                href="https://www.cpf.gov.sg/service/article/what-is-the-cpf-education-loan-scheme"
                 className={classes.resourceLink}
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Learn more
               </Anchor>
@@ -386,9 +435,10 @@ export function LandingPageComponent() {
                 </Text>
               </div>
               <Anchor
-                href="#"
+                href="https://www.moe.gov.sg/financial-matters/government-loan-schemes/tuition-fee-loan"
                 className={classes.resourceLink}
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Learn more
               </Anchor>
@@ -416,9 +466,10 @@ export function LandingPageComponent() {
                 </Text>
               </div>
               <Anchor
-                href="#"
+                href="https://www.cpf.gov.sg/member/tools-and-services/forms-e-applications/apply-for-cpf-education-loan"
                 className={classes.resourceLink}
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Browse forms
               </Anchor>
