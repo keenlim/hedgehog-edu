@@ -130,6 +130,7 @@ export default function CalculateApp() {
                         tflCashAmount={TFL_CASH_AMOUNT}
                         cpfWithdrawalLimit={Number(form.values.withdrawalLimit)}
                         repaymentPlan={form.values.repaymentPlans}
+                        repaymentPeriod={Number(form.values.repaymentPeriod)}
                         course={form.values.course}
                         schoolFees={Number(form.values.schoolFees)}
                         studyLength={Number(form.values.studyLength)}

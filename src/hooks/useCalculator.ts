@@ -12,6 +12,9 @@ export function CPFCalculatorAmount(schoolFees: number,
 
     const CPF_INTEREST_RATE = 2.5 / 100; // CPF interest rate is fixed at 2.5%
     const num_of_deduction = studyLength * academicSystem;
+    if (repaymentPeriod > 12) {
+        repaymentPeriod = 12; // Maximum repayment period for CPF is ALWAYS 12 years
+    }
     const TOTAL_REPAYMENT_PERIOD_MONTHS = repaymentPeriod * 12; // Convert repayment period from years to months
 
      // Calculate CPF total payment amount + monthly instalment
@@ -78,10 +81,14 @@ export function TFLCalculatorAmount(schoolFees: number,
     // Fixed variables for both CPF & TFL
     const TFL_INTEREST_RATE = interestRates / 100; // Convert interest rate from percentage to decimal
     const num_of_deduction = studyLength * academicSystem;
+    const MAX_REPAYMENT_YEARS = course === 'diploma' ? 10 : 20; // Maximum repayment period for diploma is 10 years, and for degree is 20 years
+    if (repaymentPeriod > MAX_REPAYMENT_YEARS) {
+        repaymentPeriod = MAX_REPAYMENT_YEARS; // Maximum repayment period for TFL is 10 years for diploma and 20 years for degree
+    }
     const TOTAL_REPAYMENT_PERIOD_MONTHS = repaymentPeriod * 12; // Convert repayment period from years to months
     const DIPLOMA_TFL_PERCENTAGE = 0.75 // only can borrow 75% of school fees for diploma
     const DEGREE_TFL_PERCENTAGE = 0.90 // only can borrow 90% of school fees for degree
-
+    
     // Calculate TFL total payment amount + monthly instalment depending on if it's diploma or degree
     const LOAN_LIMIT = schoolFees * (course === 'diploma' ? DIPLOMA_TFL_PERCENTAGE : DEGREE_TFL_PERCENTAGE)
     const TOTAL_CASH_AMOUNT = schoolFees * num_of_deduction * (course === 'diploma' ? 1-DIPLOMA_TFL_PERCENTAGE : 1-DEGREE_TFL_PERCENTAGE);

@@ -240,13 +240,24 @@ export function CalculatorForm ({
                                 required
                                 min={0}
                                 step={1}
-                                max={50}
+                                max={course === 'diploma' ? 12 : 20}
                                 value={repaymentPeriod}
                                 onChange={handleRepaymentPeriod}
                                 size="lg"
                                 className={classess.numberInput}
                                 error={form.errors.repaymentPeriod}
                             />
+
+                            <Space h="xs" />
+                            {course === 'diploma' ? (
+                                <Text size="sm" c="dimmed">
+                                    Do note that the maximum repayment period is <span className={classess.CPFText}>12 years for CPF Education Loan</span> and <span className={classess.TFLText}>10 years for MOE TFL</span>.
+                                </Text>
+                            ) : (
+                                <Text size="sm" c="dimmed">
+                                    Do note that the maximum repayment period is <span className={classess.CPFText}>12 years for CPF Education Loan</span> and <span className={classess.TFLText}>20 years for MOE TFL</span>.
+                                </Text>
+                            )}
                         </>
                     ) : (
                         <>
