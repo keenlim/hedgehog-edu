@@ -187,7 +187,6 @@ export function CalculatorForm ({
                     <Space h="lg" />
                     <Text mb="md">
                         Length of Study (in years)
-                        <TooltipInfo label="The Available Withdrawal Limit is either 40% of your accumulated OA savings, or your remaining OA balance, whichever is lower. The amount that can be used is also subject to the tuition fees payable." />
                     </Text>
                     <NumberInput
                         placeholder="E.g. 3 years"
@@ -206,6 +205,7 @@ export function CalculatorForm ({
                     <Space h="lg" />
                     <Text mb="md">
                         Current Available Withdrawal Limit
+                        <TooltipInfo label="The Available Withdrawal Limit is either 40% of your accumulated OA savings, or your remaining OA balance, whichever is lower. The amount that can be used is also subject to the tuition fees payable." />
                     </Text>
                     <NumberInput
                         placeholder="E.g. 10000"

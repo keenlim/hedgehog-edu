@@ -26,6 +26,7 @@ import { useEffect } from "react";
 import { IconArrowNarrowRight, IconCalculator } from "@tabler/icons-react";
 
 import { motion, Variants } from "motion/react";
+import { TooltipInfo } from "../Common/Tooltip";
 
 const ARTICLES: ArticleItem[] = [
   {
@@ -283,44 +284,47 @@ export function LandingPageComponent() {
                 </Table.Tr>
               </Table.Thead>
 
-              <Table.Tbody>
-                <Row
-                  feature="Loan Coverage"
-                  left={
-                    <>
-                      Up to 100% of subsidised tuition fees, subject to Available
-                      Withdrawal Limit in CPF OA
-                    </>
-                  }
-                  right={
-                    <>
-                      Up to 90% of subsidised tuition fees (for AU) and up to 75%
-                      (for Poly)
-                    </>
-                  }
-                />
-
-                <Row
-                  feature="Interest Rate"
-                  left="2.5%"
-                  right="3 months SORA + 1.5 percentage point"
-                />
-
-                <Row
-                  feature="Interest Accrual"
-                  left={
-                    <>
-                      Interest accrual begins from the month loan is taken out
-                      from CPF OA
-                    </>
-                  }
-                  right={
-                    <>
-                      Interest‑free during course of study, interest accrues after
-                      graduation
-                    </>
-                  }
-                />
+            <Table.Tbody>
+              <Row
+                feature="Loan Coverage"
+                left={
+                  <>
+                    Up to 100% of subsidised tuition fees, subject to Available
+                    Withdrawal Limit in CPF OA
+                  </>
+                }
+                right={
+                  <>
+                    Up to 90% of subsidised tuition fees (for AU) and up to 75%
+                    (for Poly)
+                  </>
+                }
+              />
+              <Row
+                feature="Interest Rate"
+                left="2.5%"
+                right={
+                  <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                    3 months SORA + 1.5%
+                    <TooltipInfo label="3-month compounded Singapore Overnight Rate Average (3M SORA) plus 1.5 percentage points or such other rates as may be determined from time to time by the bank" />
+                  </span>
+                }
+              />
+              <Row
+                feature="Interest Accrual"
+                left={
+                  <>
+                    Interest accrual begins from the month loan is taken out
+                    from CPF OA
+                  </>
+                }
+                right={
+                  <>
+                    0% interest during course of study, interest accrues after
+                    graduation
+                  </>
+                }
+              />
 
                 <Row
                   feature="Repayment Start Date"
