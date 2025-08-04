@@ -53,3 +53,13 @@
 	color: var(--mantine-color-dimmed);
   }
   
+.bigButton {
+	height: 90px;
+	/* horizontal padding */
+	padding-left: 3rem;
+	padding-right: 3rem;
+	/* font size and vertical centering */
+	font-size: 1.5rem;
+	line-height: 80px;
+
+}

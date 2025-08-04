@@ -3,6 +3,7 @@ import classes from './CalculatorResult.module.css';
 import { formatCurrency } from '@/utils/format';
 import { IconEdit, IconPlus } from '@tabler/icons-react';
 import { useMemo } from 'react';
+import { motion } from 'motion/react';
 
 interface CalculaterResultProps {
     cpfMonthlyInstalment: number;
@@ -69,23 +70,35 @@ export function CalculatorResultDesktop({
                     {isEligibleForWithdrawal ? (
                         <>
                         <Center>
-                            <Title size="h1" className={classes.amountText}>
-                                {cpfTotalRepaymentAmount ? formatCurrency(cpfTotalRepaymentAmount): 'NA'}
-                            </Title>
+                            <motion.div
+                                initial={{opacity: 0, scale: 0}}
+                                animate={{opacity: 1, scale: 1}}>
+                                <Title size="h1" className={classes.amountText}>
+                                    {cpfTotalRepaymentAmount ? formatCurrency(cpfTotalRepaymentAmount): 'NA'}
+                                </Title>
+                            </motion.div>
                         </Center>   
                         <Space h="xs" />
                         <Center>
-                            <Text size="md" c="#f6d594">
-                                100 % loan coverage
-                            </Text>
+                            <motion.div
+                                initial={{opacity: 0, scale: 0}}
+                                animate={{opacity: 1, scale: 1}}>
+                                <Text size="md" c="#f6d594">
+                                    100 % loan coverage
+                                </Text>
+                            </motion.div>
                         </Center>
                         </>
                     ) : (
                         <>
                         <Center>
-                            <Title size="h1" className={classes.amountText}>
-                                Not Eligible
-                            </Title>
+                            <motion.div
+                                initial={{opacity: 0, scale: 0}}
+                                animate={{opacity: 1, scale: 1}}>
+                                <Title size="h1" className={classes.amountText}>
+                                    Not Eligible
+                                </Title>
+                            </motion.div>
                         </Center>   
                         </>
                     )}
@@ -93,19 +106,28 @@ export function CalculatorResultDesktop({
 
                 <Grid.Col span={6}>
                     <Center pb="sm">
-                        <Title size="h1" className={classes.amountText}>
-                            {tflTotalRepaymentAmount ? formatCurrency(tflTotalRepaymentAmount): 'NA'}
-                        </Title>
+                        <motion.div
+                                    initial={{opacity: 0, scale: 0}}
+                                    animate={{opacity: 1, scale: 1}}>
+                            <Title size="h1" className={classes.amountText}>
+                                {tflTotalRepaymentAmount ? formatCurrency(tflTotalRepaymentAmount): 'NA'}
+                            </Title>
+                        </motion.div>
                     </Center>   
+                    <motion.div
+                                initial={{opacity: 0, scale: 0}}
+                                animate={{opacity: 1, scale: 1}}>
                     <Center pb="xs">
-                        <Text size="md" c="#f6d594" className={classes.smallerText}>
-                            {tflPrincipalAmount ? `${course === 'diploma' ? '75% ' : '90% '}Loan Coverage: ${formatCurrency(tflPrincipalAmount)}` : 'NA'}
-                        </Text>
-                        <IconPlus size={24} color="#f6d594" className={classes.iconPlus} />
-                        <Text size="md" c="#f6d594">
-                            {tflCashAmount ? `${course === 'diploma' ? '25% ' : '10% '} Cash: ${formatCurrency(tflCashAmount)}` : 'NA'}
-                        </Text>
+                            <Text size="md" c="#f6d594" className={classes.smallerText}>
+                                {tflPrincipalAmount ? `${course === 'diploma' ? '75% ' : '90% '}Loan Coverage: ${formatCurrency(tflPrincipalAmount)}` : 'NA'}
+                            </Text>
+                            <IconPlus size={24} color="#f6d594" className={classes.iconPlus} />
+                            <Text size="md" c="#f6d594">
+                                {tflCashAmount ? `${course === 'diploma' ? '25% ' : '10% '} Cash: ${formatCurrency(tflCashAmount)}` : 'NA'}
+                            </Text>
+                        
                     </Center>
+                    </motion.div>
                 </Grid.Col>
 
                 <Grid.Col span={12}>
@@ -121,70 +143,90 @@ export function CalculatorResultDesktop({
                     {isEligibleForWithdrawal ? (
                         <>
                         <Center>
-                            <Title size="h1" className={classes.amountText}>
-                                {repaymentPlan === 'repaymentPeriod' ? (
-                                    cpfMonthlyInstalment ? `${formatCurrency(cpfMonthlyInstalment)}`: 'NA'
-                                ) : (
-                                    `${cpfMonthlyInstalment} months`
-                                )}
-                            </Title>
+                            <motion.div
+                                    initial={{opacity: 0, scale: 0}}
+                                    animate={{opacity: 1, scale: 1}}>
+                                <Title size="h1" className={classes.amountText}>
+                                    {repaymentPlan === 'repaymentPeriod' ? (
+                                        cpfMonthlyInstalment ? `${formatCurrency(cpfMonthlyInstalment)}`: 'NA'
+                                    ) : (
+                                        `${cpfMonthlyInstalment} months`
+                                    )}
+                                </Title>
+                            </motion.div>
                         </Center>   
                         <Center>
-                            {repaymentPlan === 'repaymentPeriod' ? (
-                                <Text size="sm" c="#f6d594">
-                                    for {repaymentPeriod ? (repaymentPeriod > 12 ? 12 : repaymentPeriod): null} years
-                                </Text>
-                            ) : null}
+                            <motion.div
+                                    initial={{opacity: 0, scale: 0}}
+                                    animate={{opacity: 1, scale: 1}}>
+                                {repaymentPlan === 'repaymentPeriod' ? (
+                                    <Text size="sm" c="#f6d594">
+                                        for {repaymentPeriod ? (repaymentPeriod > 12 ? 12 : repaymentPeriod): null} years
+                                    </Text>
+                                ) : null}
+                            </motion.div>
                         </Center>
                         </>
                     ) : (
                         <>
-                        <Center>
-                            <Title size="h1" className={classes.amountText}>
-                                Not Eligible
-                            </Title>
-                        </Center>   
-                        <Space h="xs" />
-                        <Center>
-                            <Text size="md" c="#f6d594">
-                                The lender's OA does not have sufficient savings to accommodate the indicated loan amount. 
-                            </Text>
-                        </Center>
+                        <motion.div
+                                initial={{opacity: 0, scale: 0}}
+                                animate={{opacity: 1, scale: 1}}>
+                            <Center>
+                                <Title size="h1" className={classes.amountText}>
+                                    Not Eligible
+                                </Title>
+                            </Center>   
+                            <Space h="xs" />
+                            <Center>
+                                <Text size="md" c="#f6d594">
+                                    The lender's OA does not have sufficient savings to accommodate the indicated loan amount. 
+                                </Text>
+                            </Center>
+                        </motion.div>
                         </>
                     )}
                 </Grid.Col>
 
                 <Grid.Col span={6}>
-                    <Center>
-                        <Title size="h1" className={classes.amountText}>
+                    <motion.div
+                                    initial={{opacity: 0, scale: 0}}
+                                    animate={{opacity: 1, scale: 1}}>
+                        <Center>
+                            <Title size="h1" className={classes.amountText}>
+                                {repaymentPlan === 'repaymentPeriod' ? (
+                                    tflMonthlyInstalment ? `${formatCurrency(tflMonthlyInstalment)}` : 'NA'
+                                ) : `${tflMonthlyInstalment} months`}
+                            </Title>
+                        </Center>  
+                        <Center>
                             {repaymentPlan === 'repaymentPeriod' ? (
-                                tflMonthlyInstalment ? `${formatCurrency(tflMonthlyInstalment)}` : 'NA'
-                            ) : `${tflMonthlyInstalment} months`}
-                        </Title>
-                    </Center>  
-                    <Center>
-                        {repaymentPlan === 'repaymentPeriod' ? (
-                            <Text size="sm" c="#f6d594">
-                                for {repaymentPeriod ? 
-                                    (repaymentPeriod > (course === 'diploma' ? 10 : 20) ? 
-                                    (course === 'diploma' ? 10 : 20) 
-                                    : repaymentPeriod) : null
-                                } years
-                            </Text>
-                        ) : null}
-                    </Center> 
+                                <Text size="sm" c="#f6d594">
+                                    for {repaymentPeriod ? 
+                                        (repaymentPeriod > (course === 'diploma' ? 10 : 20) ? 
+                                        (course === 'diploma' ? 10 : 20) 
+                                        : repaymentPeriod) : null
+                                    } years
+                                </Text>
+                            ) : null}
+                        </Center> 
+                    </motion.div>
                 </Grid.Col>
 
                 <Grid.Col span={12} mt="xs">
                     <Center>
-                    <Button variant="outline" 
-                            color="white" 
-                            size="lg" 
-                            radius="xl"
-                            rightSection={<IconEdit color="white"/>}
-                            onClick={handleEdit}>
-                            Edit
-                    </Button>
+                    <motion.div
+                       whileHover={{ scale: 1.2 }}
+                       whileTap={{ scale: 0.8 }}>
+                        <Button variant="outline" 
+                                color="white" 
+                                size="lg" 
+                                radius="xl"
+                                rightSection={<IconEdit color="white"/>}
+                                onClick={handleEdit}>
+                                Edit
+                        </Button>
+                    </motion.div>
                    </Center>
                 </Grid.Col>
 

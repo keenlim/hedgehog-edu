@@ -4,6 +4,7 @@ import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Sele
 import classess from './CalculatorForm.module.css';
 import { SelectableOptionButton } from '../Common/SelectableOptionButton';
 import { TooltipInfo } from '../Common/Tooltip';
+import { motion, Variants } from 'motion/react';
 
 const RepaymentPlan = [
     {value: 'repaymentPeriod', label: 'Estimated Repayment Period'},
@@ -57,8 +58,27 @@ export function CalculatorForm ({
     repaymentAmount,
     handleRepaymentAmount
 }: CalculateFormProps) {
+
+    const container: Variants = {
+        hidden: {x: -100, opacity: 0},
+        show: {
+            x: 0,
+            opacity: 1, 
+            transition: {
+                // stagger children by 0.2s
+                when: "beforeChildren",
+                staggerChildren: 0.2,
+                duration: 0.8,
+                ease: "easeInOut"
+            },
+        },
+      };
    
     return (
+        <motion.div 
+        initial="hidden"
+        animate="show"
+        variants={container}>
         <Center>
             <Box w="80%" mx="auto">
                 <Paper className={classess.paperForm}>
@@ -216,7 +236,7 @@ export function CalculatorForm ({
 
                     <Space h="lg" />
                     <Text mb="md">
-                       Select repayment plan
+                        Select repayment plan
                     </Text>
                     <Select data={RepaymentPlan}
                             placeholder="Select repayment plan"
@@ -341,5 +361,6 @@ export function CalculatorForm ({
                 </Paper>
             </Box>
         </Center>
+        </motion.div>
     )
 }
