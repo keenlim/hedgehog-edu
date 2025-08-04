@@ -15,6 +15,7 @@ import {
   Table,
   Text,
   Title,
+  Accordion,
 } from "@mantine/core";
 import classes from "./LandingPage.module.css";
 
@@ -23,6 +24,7 @@ import {
   type ArticleItem,
 } from "@/components/Common/ArticleCarousel";
 import { useEffect } from "react";
+import { IconArrowNarrowRight, IconCalculator } from "@tabler/icons-react";
 
 const ARTICLES: ArticleItem[] = [
   {
@@ -141,55 +143,103 @@ export function LandingPageComponent() {
 
         <Grid gutter="lg">
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Consider all the financing options that are available for you
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Are you eligible for any additional financial assistance or
-                scholarships?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Consider all the financing options that are available for you
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Are you eligible for any additional financial assistance or
+                  scholarships?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Determine if using lenders’ savings impacts their retirement
-                plans
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Do they have sufficient CPF savings for them to meet their
-                retirement needs?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Determine if using lenders’ savings impacts their retirement
+                  plans
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Do they have sufficient CPF savings for them to meet their
+                  retirement needs?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Work out your optimal loan repayment period
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Which repayment schedule better suits your anticipated financial
-                situation?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Work out your optimal loan repayment period
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Which repayment schedule better suits your anticipated
+                  financial situation?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Text className={classes.cardTitle}>
-                Assess your repayment options and the associated risks
-              </Text>
-              <Space h="xs" />
-              <Text c="dimmed" size="sm">
-                Which option provides the flexibility you need when
-                circumstances change?
-              </Text>
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 130,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Text className={classes.cardTitle}>
+                  Assess your repayment options and the associated risks
+                </Text>
+                <Space h="xs" />
+                <Text c="dimmed" size="sm">
+                  Which option provides the flexibility you need when
+                  circumstances change?
+                </Text>
+              </div>
             </Card>
           </Grid.Col>
         </Grid>
@@ -301,31 +351,64 @@ export function LandingPageComponent() {
           <Button
             component={Link}
             href="/calculate"
-            variant="filled"
-            color="teal"
-            size="lg"
-            radius="xl"
+            size="xl"
+            radius="md"
+            styles={{
+              root: {
+                backgroundColor: "#00665C",
+                height: "100px",
+                width: "100%",
+                maxWidth: "400px",
+                fontSize: "24px",
+                fontWeight: 700,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              },
+              label: {
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+              },
+            }}
           >
-            Comparison calculator
+            <IconCalculator size="md" />
+            Comparison Calculator
+            <IconArrowNarrowRight size="lg" />
           </Button>
         </Group>
 
         <Space h="xl" />
 
+        <Title order={4} mb="md" ta="center">
+          Need more information?
+        </Title>
         <Grid gutter="lg">
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Title order={6} mb="xs">
-                CPF Education Loan
-              </Title>
-              <Text size="sm" c="dimmed">
-                Find out more about CPF EDL in our brochure
-              </Text>
-              <Space h="sm" />
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 150,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Title order={6} mb="xs">
+                  CPF Education Loan
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Find out more about CPF EDL in our brochure
+                </Text>
+              </div>
               <Anchor
-                href="#"
+                href="https://www.cpf.gov.sg/service/article/what-is-the-cpf-education-loan-scheme"
                 className={classes.resourceLink}
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Learn more
               </Anchor>
@@ -333,18 +416,30 @@ export function LandingPageComponent() {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Title order={6} mb="xs">
-                MOE Tuition Fee Loan
-              </Title>
-              <Text size="sm" c="dimmed">
-                Find out more about MOE TFL on their website
-              </Text>
-              <Space h="sm" />
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 150,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Title order={6} mb="xs">
+                  MOE Tuition Fee Loan
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Find out more about MOE TFL on their website
+                </Text>
+              </div>
               <Anchor
-                href="#"
+                href="https://www.moe.gov.sg/financial-matters/government-loan-schemes/tuition-fee-loan"
                 className={classes.resourceLink}
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Learn more
               </Anchor>
@@ -352,18 +447,30 @@ export function LandingPageComponent() {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card withBorder radius="md" padding="lg">
-              <Title order={6} mb="xs">
-                Forms and Applications
-              </Title>
-              <Text size="sm" c="dimmed">
-                Find the relevant application forms and documents you’ll need
-              </Text>
-              <Space h="sm" />
+            <Card
+              withBorder
+              radius="md"
+              padding="lg"
+              style={{
+                height: 150,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <Title order={6} mb="xs">
+                  Forms and Applications
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Find the relevant application forms and documents you’ll need
+                </Text>
+              </div>
               <Anchor
-                href="#"
+                href="https://www.cpf.gov.sg/member/tools-and-services/forms-e-applications/apply-for-cpf-education-loan"
                 className={classes.resourceLink}
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Browse forms
               </Anchor>
@@ -377,16 +484,130 @@ export function LandingPageComponent() {
           FAQs
         </Title>
 
-        <Paper radius="md" p="xl" withBorder className={classes.note}>
-          <Title order={5} mb="sm">
-            Common misconceptions
-          </Title>
-          <List withPadding>
-            <List.Item>
-              CPF Board allows later repayment compared to other loan options.
-            </List.Item>
-          </List>
-        </Paper>
+        <Title order={5} mb="sm" ta="center">
+          Common questions
+        </Title>
+
+        <Accordion
+          variant="default"
+          radius="md"
+          chevronPosition="right"
+          transitionDuration={200}
+          styles={{
+            item: {
+              border: "1px solid #C4D7D1",
+              borderRadius: "8px",
+              marginBottom: "12px",
+            },
+            control: {
+              padding: "16px",
+              fontSize: "16px",
+              fontWeight: 500,
+            },
+            chevron: {
+              color: "#00544F",
+            },
+          }}
+        >
+          <Accordion.Item value="repayment">
+            <Accordion.Control>
+              Does CPF Board allow later repayment compared to other loan
+              options?
+            </Accordion.Control>
+            <Accordion.Panel>
+              <p>
+                The CPF Education Loan requires borrowers to commence repayment one year after graduation or termination of studies, whichever is earlier. This is a fixed timeline that applies to all borrowers.
+              </p>
+              <p>
+                In comparison, the MOE Tuition Fee Loan offers more flexible repayment options:
+              </p>
+              <ul>
+                <li>For autonomous university students, repayment can begin within 2 years after graduation.</li>
+                <li>For polytechnic students, repayment can begin within 1 year after graduation.</li>
+              </ul>
+              <p>
+                For the CPF Education Loan, while deferment of repayment is possible for scenarios such as serving National Service (NS), interest will still continue to accrue.
+                Meanwhile, for the MOE Tuition Fee Loan, you may appeal for deferment of repayment and interest due to serving NS, further studies, or financial difficulties.
+                Interest will not accrue during deferment.
+              </p>
+            </Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="instalments">
+            <Accordion.Control>
+              Does CPF Education Loan offers lower monthly instalments compared
+              to other loan options?
+            </Accordion.Control>
+            <Accordion.Panel>
+              <p>
+                Both the CPF Education Loan and the MOE Tuition Fee Loan have set the same minimum monthly instalment amount of <strong>$100</strong>. However, the actual monthly instalment amount for both loans will be calculated based on several factors:
+              </p>
+
+              <ul>
+                <li>Total loan amount</li>
+                <li>Chosen repayment period</li>
+                <li>Applicable interest rate</li>
+              </ul>
+
+              <p>
+                Borrowers can use our{' '}
+                <Anchor href="/calculate" underline="hover">
+                  Education Loan Comparison Calculator
+                </Anchor>{' '}
+                to compute the estimated monthly instalment for both loans based on their circumstances.
+              </p>
+            </Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="eduloan">
+            <Accordion.Control>
+              How does the education loan repayment work?
+            </Accordion.Control>
+            <Accordion.Panel>
+              <p>
+                For the CPF Education Loan, the borrower has to start repaying the loan one year after graduation or termination of studies, whichever is earlier.
+                The borrower will receive a notification on the loan repayment details generally about three months before it commences.
+                If the borrower intends to start the repayment earlier, they can contact us through{' '}
+                <Anchor
+                  href="https://www.cpf.gov.sg/service/write-to-us"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="hover"
+                >
+                  Write to us
+                </Anchor>{' '}
+                using their Singpass.
+              </p>
+
+              <p>
+                Repayment must be made in cash, either in one lump sum or via monthly instalments over a maximum of 12 years.
+                The monthly instalment rate will be computed based on the loan amount and chosen repayment period.
+                The borrower cannot use their own CPF savings to make repayments to the lender’s CPF Account.
+              </p>
+
+              <p>
+                Borrowers are encouraged to repay the full loan as early as possible to reduce interest payable and to allow the account holder to use their CPF monies for housing and retirement needs.
+                This can be done by making lump sum repayments or choosing a higher monthly instalment amount via{' '}
+                <Anchor
+                  href="https://www.cpf.gov.sg/member/tools-and-services/forms-e-applications/manage-education-loan-repayments"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="hover"
+                >
+                  Manage Education Loan Repayments
+                </Anchor>.
+              </p>
+
+              <p>
+                Borrowers can use our{' '}
+                <Anchor href="/calculate" underline="hover">
+                  Education Loan Comparison Calculator
+                </Anchor>{' '}
+                to compute how long it will take to repay the loan or to work out a suitable loan repayment plan.
+              </p>
+            </Accordion.Panel>
+          </Accordion.Item>
+        </Accordion>
       </section>
       <section className={classes.section}>
         <ArticleCarousel items={ARTICLES} />

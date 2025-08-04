@@ -1,0 +1,16 @@
+.tooltip {
+	background-color: #134e4a;
+	color: white;
+	font-size: 14px;
+	line-height: 1.4;
+	max-width: 360px; 
+	word-wrap: break-word;
+  }
+  
+  .iconWrapper {
+	display: inline-flex;
+	margin-left: 6px;
+	vertical-align: middle;
+	cursor: pointer;
+  }
+  

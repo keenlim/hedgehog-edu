@@ -3,10 +3,11 @@
 import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select, Group} from '@mantine/core';
 import classess from './CalculatorForm.module.css';
 import { SelectableOptionButton } from '../Common/SelectableOptionButton';
+import { TooltipInfo } from '../Common/Tooltip';
 
 const RepaymentPlan = [
     {value: 'repaymentPeriod', label: 'Estimated Repayment Period'},
-    {value: 'repaymentAmount', label: 'Estimated Monthy Repayment Amount'}
+    {value: 'repaymentAmount', label: 'Estimated Monthly Repayment Amount'}
 ]
 
 interface CalculateFormProps {
@@ -166,6 +167,7 @@ export function CalculatorForm ({
                     <Space h="lg" />
                     <Text mb="md">
                         Length of Study (in years)
+                        <TooltipInfo label="The Available Withdrawal Limit is either 40% of your accumulated OA savings, or your remaining OA balance, whichever is lower. The amount that can be used is also subject to the tuition fees payable." />
                     </Text>
                     <NumberInput
                         placeholder="E.g. 3 years"
@@ -230,6 +232,7 @@ export function CalculatorForm ({
                             <Space h="lg" />
                             <Text mb="md">
                                 Estimated Repayment Period
+                                <TooltipInfo label="A shorter repayment period means that less interest will be accrued over time." />
                             </Text>
                             <NumberInput
                                 placeholder="E.g. 3 years"
@@ -250,6 +253,7 @@ export function CalculatorForm ({
                             <Space h="lg" />
                             <Text mb="md">
                                 Estimated Monthly Repayment Amount
+                                <TooltipInfo label="A higher monthly repayment amount means that less interest will be accrued over time." />
                             </Text>
                             <NumberInput
                                 placeholder="E.g. 500"
