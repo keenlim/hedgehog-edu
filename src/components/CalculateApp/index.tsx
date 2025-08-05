@@ -79,6 +79,34 @@ export default function CalculateApp() {
         setIsCalculationForm(false);
     }
 
+    const handleRepaymentPeriodSlider = (repaymentPeriod: Number) => {
+        // Set the repayment period value in the form
+        form.setFieldValue('repaymentPeriod', Number(repaymentPeriod));
+        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
+
+        // Set the results to the state variables
+        setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
+        setCPF_Total_Repayment_Amount(CPF_Total_Repayment_Amount);
+        setTFL_Monthly_Instalment(TFL_Monthly_Instalment);
+        setTFL_Total_Repayment_Amount(TFL_Total_Repayment_Amount);
+        setTFL_principal_amount(TFL_principal_amount);
+        setTFL_CASH_AMOUNT(TOTAL_CASH_AMOUNT);
+    }
+
+    const handleRepaymentAmountSlider = (repaymentAmount: Number) => {
+         // Set the repayment period value in the form
+         form.setFieldValue('repaymentAmount', Number(repaymentAmount));
+         const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
+ 
+         // Set the results to the state variables
+         setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
+         setCPF_Total_Repayment_Amount(CPF_Total_Repayment_Amount);
+         setTFL_Monthly_Instalment(TFL_Monthly_Instalment);
+         setTFL_Total_Repayment_Amount(TFL_Total_Repayment_Amount);
+         setTFL_principal_amount(TFL_principal_amount);
+         setTFL_CASH_AMOUNT(TOTAL_CASH_AMOUNT);
+    }
+
     return (
         <>
         {isCalculationForm ? (
@@ -131,11 +159,14 @@ export default function CalculateApp() {
                         cpfWithdrawalLimit={Number(form.values.withdrawalLimit)}
                         repaymentPlan={form.values.repaymentPlans}
                         repaymentPeriod={Number(form.values.repaymentPeriod)}
+                        repaymentAmount={Number(form.values.repaymentAmount)}
                         course={form.values.course}
                         schoolFees={Number(form.values.schoolFees)}
                         studyLength={Number(form.values.studyLength)}
                         academicSystem={form.values.academicSystem}
-                        handleEdit={() => setIsCalculationForm(true)}/>
+                        handleEdit={() => setIsCalculationForm(true)}
+                        handleRepaymentPeriodSlider={handleRepaymentPeriodSlider}
+                        handleRepaymentAmountSlider={handleRepaymentAmountSlider}/>
             </Banner>
             <ResultsExplain 
                 cpfTotalRepaymentAmount={Number(CPF_Total_Repayment_Amount)}

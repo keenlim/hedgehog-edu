@@ -21,3 +21,13 @@
 .iconPlus {
     margin: 0 0.25rem;
 }
+
+.boxText {
+    background-color: white;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+}
+
+.textFont {
+    font-size: 32px;
+}

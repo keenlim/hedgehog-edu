@@ -1,9 +1,13 @@
-import { Button, Center, Divider, Grid, Space, Text, Title } from '@mantine/core';
+'use client'
+
+import { useRef } from 'react';
+import { Box, Button, Center, Divider, Grid, Group, NumberInput, Slider, Space, Text, Textarea, Title } from '@mantine/core';
 import classes from './CalculatorResult.module.css';
 import { formatCurrency } from '@/utils/format';
 import { IconEdit, IconPlus } from '@tabler/icons-react';
 import { useMemo } from 'react';
 import { motion } from 'motion/react';
+import { base } from 'motion/react-client';
 
 interface CalculaterResultProps {
     cpfMonthlyInstalment: number;
@@ -15,11 +19,14 @@ interface CalculaterResultProps {
     cpfWithdrawalLimit: number;
     repaymentPlan: string | null; // 'repaymentAmount' | 'repaymentPeriod';
     repaymentPeriod?: number; // Optional, only if repaymentPlan is 'repaymentPeriod'
+    repaymentAmount?: number; // Optional, only if repaymentPlan is 'repaymentAmount'
     course: 'diploma' | 'degree';
     schoolFees: number;
     studyLength: number;
     academicSystem: 2 | 3;
     handleEdit: () => void;
+    handleRepaymentPeriodSlider?: (value: number) => void;
+    handleRepaymentAmountSlider?: (value: number) => void; // Optional, only if repaymentPlan is 'repaymentAmount'
 }
 
 export function CalculatorResultDesktop({
@@ -32,11 +39,14 @@ export function CalculatorResultDesktop({
     cpfWithdrawalLimit,
     repaymentPlan,
     repaymentPeriod,
+    repaymentAmount,
     course,
     schoolFees,
     studyLength, 
     academicSystem,
     handleEdit,
+    handleRepaymentPeriodSlider,
+    handleRepaymentAmountSlider
 }: CalculaterResultProps) {
 
     const isEligibleForWithdrawal = useMemo(() => {
@@ -44,6 +54,29 @@ export function CalculatorResultDesktop({
         return (schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit;
     }, [schoolFees, studyLength, academicSystem, cpfWithdrawalLimit]);
 
+    function generateMarks(
+        repaymentAmount: number,
+        range = 1000,
+        step = 100
+      ): any[] {
+        const start = Math.max(0, repaymentAmount - range);
+        const end = repaymentAmount + range;
+        const marks: any[] = [];
+      
+        for (let v = start; v <= end; v += step) {
+          marks.push({ value: v, label: String(v) });
+        }
+      
+        return marks;
+      }
+
+      const baseAmount = useRef(Number(repaymentAmount));
+      const amountMax = baseAmount.current + 500;
+
+      const marks = useMemo(
+        () => generateMarks(baseAmount.current, 500, 100),
+        [course, baseAmount]
+      )
 
 
     return (
@@ -190,8 +223,8 @@ export function CalculatorResultDesktop({
 
                 <Grid.Col span={6}>
                     <motion.div
-                                    initial={{opacity: 0, scale: 0}}
-                                    animate={{opacity: 1, scale: 1}}>
+                        initial={{opacity: 0, scale: 0}}
+                        animate={{opacity: 1, scale: 1}}>
                         <Center>
                             <Title size="h1" className={classes.amountText}>
                                 {repaymentPlan === 'repaymentPeriod' ? (
@@ -211,6 +244,82 @@ export function CalculatorResultDesktop({
                             ) : null}
                         </Center> 
                     </motion.div>
+                </Grid.Col>
+
+                <Grid.Col span={12}>
+                    {repaymentPlan==='repaymentPeriod' ? (
+                        <Title size="h2" c="white" mt="xl" ta="center">
+                            Estimated Repayment Period
+                        </Title>
+                    ) : (
+                        <Title size="h2" c="white" mt="xl" ta="center">
+                            Estimated Repayment Amount
+                        </Title>
+                    ) }
+                    
+                </Grid.Col>
+
+                <Grid.Col span={12} my="lg">
+                    <Center>
+                        <Group
+                             align="center"
+                             style={{ width: '50%' }}
+                             gap="xl">
+                            <Slider 
+                                color="white"
+                                value={repaymentPlan === 'repaymentPeriod' ? repaymentPeriod : repaymentAmount}
+                                onChange={repaymentPlan === 'repaymentPeriod' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
+                                onChangeEnd={repaymentPlan === 'repaymentPeriod' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
+                                marks={repaymentPlan === 'repaymentPeriod' ? (course === 'diploma' ? [
+                                    { value: 2, label: '2' },
+                                    { value: 4, label: '4' },
+                                    { value: 6, label: '6' },
+                                    { value: 8, label: '8' },
+                                    { value: 10, label: '10' },
+                                ] : [
+                                    { value: 2, label: '2' },
+                                    { value: 4, label: '4' },
+                                    { value: 6, label: '6' },
+                                    { value: 8, label: '8' },
+                                    { value: 10, label: '10' },
+                                    { value: 12, label: '12' },
+                                    { value: 14, label: '14' },
+                                    { value: 16, label: '16' },
+                                    { value: 18, label: '18' },
+                                    { value: 20, label: '20' }
+                                ] ) : (
+                                    marks
+                                )}
+                                min={repaymentPlan === 'repaymentPeriod' ? 0 : baseAmount.current - 500}
+                                max={repaymentPlan === 'repaymentPeriod' ? (course === 'diploma' ? 10 : 20) : amountMax}
+                                style={{ flex: 1 }} 
+                            />
+                            {repaymentPlan === 'repaymentPeriod' ? (
+                                <Text c="white"
+                                size="xl"
+                                fw={800}
+                                className={classes.textFont}>
+                                    {repaymentPeriod} years
+                                </Text>
+                            ) : (
+                                <>
+                                <Text c="white"
+                                size="xl"
+                                fw={800}
+                                className={classes.textFont}>
+                                    {formatCurrency(Number(repaymentAmount))} 
+                                </Text>
+                                <Text
+                                    c="white"
+                                    fw={800}
+                                    size="xl">
+                                    per month
+                                </Text>
+                                </>
+                            )}
+                            
+                        </Group>
+                     </Center>
                 </Grid.Col>
 
                 <Grid.Col span={12} mt="xs">
