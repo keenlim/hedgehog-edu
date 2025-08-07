@@ -112,7 +112,7 @@ export default function CalculateApp() {
         {isCalculationForm ? (
             <div>
             <Banner
-                backRoute="/"
+                backRoute="/dashboard"
                 backLabel = "Loan Comparison"
                 subtitle = "education financing"
                 title = "Education Loan Calculator" />
@@ -145,7 +145,7 @@ export default function CalculateApp() {
         ): (
         <div>
             <Banner
-                backRoute="/"
+                backRoute="/dashboard"
                 backLabel = "Loan Comparison"
                 subtitle = "results"
                 title = "Education Loan Calculator">

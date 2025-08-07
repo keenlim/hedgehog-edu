@@ -19,7 +19,7 @@ export function Footer({
     const router = useRouter();
 
     const handleBack = () => {
-        router.replace("/", { scroll: false });
+        router.replace("/dashboard", { scroll: false });
     }
     return (
         <div className={classes.footer}>

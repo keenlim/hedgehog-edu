@@ -7,7 +7,6 @@ import { formatCurrency } from '@/utils/format';
 import { IconEdit, IconPlus } from '@tabler/icons-react';
 import { useMemo } from 'react';
 import { motion } from 'motion/react';
-import { base } from 'motion/react-client';
 
 interface CalculaterResultProps {
     cpfMonthlyInstalment: number;
