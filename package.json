@@ -22,6 +22,7 @@
     "bcrypt": "^6.0.0",
     "embla-carousel-react": "8.6.0",
     "financial": "^0.2.4",
+    "framer-motion": "^12.23.12",
     "heroicons": "^2.2.0",
     "motion": "^12.23.12",
     "next": "15.4.4",
