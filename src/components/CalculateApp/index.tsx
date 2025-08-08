@@ -31,10 +31,10 @@ export default function CalculateApp() {
             interestRates: (v) => (v === '' || +v < 0 || +v > 100 ? 'Interests rate must be between 0% and 100 %' : null),
             repaymentPlans: (v) => (v === null ? 'Select a plan' : null),
             repaymentPeriod: (v, vals) => (
-                vals.repaymentPlans === 'repaymentPeriod' && (v === '' || +v < 0 ? 'It must be more than or equal to 0' : null)
+                vals.repaymentPlans === 'repaymentAmount' && (v === '' || +v < 0 ? 'It must be more than or equal to 0' : null)
             ),
             repaymentAmount: (v, vals) => (
-                vals.repaymentPlans === 'repaymentAmount' && (v === '' || +v < 1 ? 'At least $1' : null)
+                vals.repaymentPlans === 'repaymentPeriod' && (v === '' || +v < 1 ? 'At least $1' : null)
             )
         },
     });

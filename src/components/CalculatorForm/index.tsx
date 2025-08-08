@@ -249,7 +249,7 @@ export function CalculatorForm ({
                             error={form.errors.repaymentPlans}
                     />
 
-                    {repaymentPlans === 'repaymentPeriod' ? (
+                    {repaymentPlans === 'repaymentAmount' ? (
                         <>
                             <Space h="lg" />
                             <Text mb="md">

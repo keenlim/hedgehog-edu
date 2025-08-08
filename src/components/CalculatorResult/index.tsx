@@ -172,7 +172,7 @@ export function CalculatorResultDesktop({
                 <Grid.Col span={12}>
                     <Divider className="divider" my="md" size="md" label={
                         <Text c="white" fw={500} size="lg" px="xs">{
-                            repaymentPlan === 'repaymentPeriod' ? 
+                            repaymentPlan === 'repaymentAmount' ? 
                                 'Each month, you will pay' : 'Repayment Period'
                         }</Text>
                     } labelPosition="center" />
@@ -188,7 +188,7 @@ export function CalculatorResultDesktop({
                                 <Title size="h1" 
                                     className={classes.amountText}
                                     style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
-                                    {repaymentPlan === 'repaymentPeriod' ? (
+                                    {repaymentPlan === 'repaymentAmount' ? (
                                         cpfMonthlyInstalment ? `${formatCurrency(cpfMonthlyInstalment)}`: 'NA'
                                     ) : (
                                         `${cpfMonthlyInstalment} months`
@@ -200,7 +200,7 @@ export function CalculatorResultDesktop({
                             <motion.div
                                     initial={{opacity: 0, scale: 0}}
                                     animate={{opacity: 1, scale: 1}}>
-                                {repaymentPlan === 'repaymentPeriod' ? (
+                                {repaymentPlan === 'repaymentAmount' ? (
                                     <Text size="sm" c="#f6d594" mt="xs" className={classes.smallerText}>
                                         for {repaymentPeriod ? (repaymentPeriod > 12 ? 12 : repaymentPeriod): null} years
                                     </Text>
@@ -239,13 +239,13 @@ export function CalculatorResultDesktop({
                             <Title size="h1" 
                                 className={classes.amountText}
                                 style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
-                                {repaymentPlan === 'repaymentPeriod' ? (
+                                {repaymentPlan === 'repaymentAmount' ? (
                                     tflMonthlyInstalment ? `${formatCurrency(tflMonthlyInstalment)}` : 'NA'
                                 ) : `${tflMonthlyInstalment} months`}
                             </Title>
                         </Center>  
                         <Center>
-                            {repaymentPlan === 'repaymentPeriod' ? (
+                            {repaymentPlan === 'repaymentAmount' ? (
                                 <Text size="sm" c="#f6d594" mt="xs" className={classes.smallerText}>
                                     for {repaymentPeriod ? 
                                         (repaymentPeriod > (course === 'diploma' ? 10 : 20) ? 
@@ -259,7 +259,7 @@ export function CalculatorResultDesktop({
                 </Grid.Col>
 
                 <Grid.Col span={12}>
-                    {repaymentPlan==='repaymentPeriod' ? (
+                    {repaymentPlan==='repaymentAmount' ? (
                         <Title size="h2" c="white" mt="xl" ta="center">
                             Estimated Repayment Period
                         </Title>
@@ -281,11 +281,11 @@ export function CalculatorResultDesktop({
                              wrap="wrap">
                             <Slider 
                                 color="white"
-                                value={repaymentPlan === 'repaymentPeriod' ? repaymentPeriod : repaymentAmount}
-                                onChange={repaymentPlan === 'repaymentPeriod' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
-                                onChangeEnd={repaymentPlan === 'repaymentPeriod' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
+                                value={repaymentPlan === 'repaymentAmount' ? repaymentPeriod : repaymentAmount}
+                                onChange={repaymentPlan === 'repaymentAmount' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
+                                onChangeEnd={repaymentPlan === 'repaymentAmount' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
                                 marks={isMobile ? [] :
-                                    repaymentPlan === 'repaymentPeriod' ? (course === 'diploma' ? [
+                                    repaymentPlan === 'repaymentAmount' ? (course === 'diploma' ? [
                                     { value: 2, label: '2' },
                                     { value: 4, label: '4' },
                                     { value: 6, label: '6' },
@@ -305,11 +305,11 @@ export function CalculatorResultDesktop({
                                 ] ) : (
                                     marks
                                 )}
-                                min={repaymentPlan === 'repaymentPeriod' ? 0 : baseAmount.current - 500}
-                                max={repaymentPlan === 'repaymentPeriod' ? (course === 'diploma' ? 10 : 20) : amountMax}
+                                min={repaymentPlan === 'repaymentAmount' ? 0 : baseAmount.current - 500}
+                                max={repaymentPlan === 'repaymentAmount' ? (course === 'diploma' ? 10 : 20) : amountMax}
                                 style={{ flex: 1 }} 
                             />
-                            {repaymentPlan === 'repaymentPeriod' ? (
+                            {repaymentPlan === 'repaymentAmount' ? (
                                 <Text c="white"
                                 size="xl"
                                 fw={800}
