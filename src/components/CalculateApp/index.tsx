@@ -58,16 +58,10 @@ export default function CalculateApp() {
     const handleCalculation = () => {
         // Validate the form values 
         const isValid = form.validate().hasErrors === false;
-        console.log(isValid)
         if (!isValid) {
-            console.log("Validation is not valid")
             return;
         }
-        console.log(form.values.course)
         const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
-
-        console.log("Final Calculation")
-        console.log(CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount);
 
         // Set the results to the state variables
         setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
