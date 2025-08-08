@@ -5,6 +5,8 @@ import { AUTH_COOKIE, AUTH_COOKIE_VALUE, MAGIC_CODE } from "@/app/lib/auth";
 export async function POST(req: Request) {
     const { code } = await req.json().catch(() => ({ code: ""}));
 
+    console.log("Magic code from env:", process.env.MAGIC_CODE);
+
     if (code !== MAGIC_CODE) {
         return NextResponse.json({ok: false, error: "Invalid code, please try again!"}, {status: 401});
     }
