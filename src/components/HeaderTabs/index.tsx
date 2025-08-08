@@ -38,6 +38,7 @@ import { useRouter } from 'next/navigation';
       } finally {
         setLoading(false);
         router.replace('/login');
+        router.refresh();
       }
     }
   

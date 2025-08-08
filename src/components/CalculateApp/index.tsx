@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { CalculatorForm } from "@/components/CalculatorForm";
 import { Banner } from "@/components/Common/Banner";
 import { Footer } from "@/components/Common/Footer";
-import { useCalculator } from '@/hooks/useCalculator';
+import { Calculator } from '@/hooks/useCalculator';
 import { CalculatorResultDesktop } from '../CalculatorResult';
 import { ResultsExplain } from '../ResultsExplain';
 import { useForm } from '@mantine/form';
@@ -61,7 +61,7 @@ export default function CalculateApp() {
         if (!isValid) {
             return;
         }
-        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
+        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = Calculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
 
         // Set the results to the state variables
         setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
@@ -73,10 +73,10 @@ export default function CalculateApp() {
         setIsCalculationForm(false);
     }
 
-    const handleRepaymentPeriodSlider = (repaymentPeriod: Number) => {
+    const handleRepaymentPeriodSlider = (repaymentPeriod: number) => {
         // Set the repayment period value in the form
         form.setFieldValue('repaymentPeriod', Number(repaymentPeriod));
-        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
+        const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = Calculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
 
         // Set the results to the state variables
         setCPF_Monthly_Instalment(CPF_Monthly_Instalment);
@@ -87,10 +87,10 @@ export default function CalculateApp() {
         setTFL_CASH_AMOUNT(TOTAL_CASH_AMOUNT);
     }
 
-    const handleRepaymentAmountSlider = (repaymentAmount: Number) => {
+    const handleRepaymentAmountSlider = (repaymentAmount: number) => {
          // Set the repayment period value in the form
          form.setFieldValue('repaymentAmount', Number(repaymentAmount));
-         const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = useCalculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
+         const [CPF_Monthly_Instalment, CPF_Total_Repayment_Amount, TFL_Monthly_Instalment, TFL_Total_Repayment_Amount, TFL_principal_amount, TOTAL_CASH_AMOUNT] = Calculator(form.values.schoolFees, form.values.academicSystem, form.values.course, form.values.repaymentPeriod, form.values.interestRates, form.values.studyLength, form.values.repaymentPlans, form.values.repaymentAmount);
  
          // Set the results to the state variables
          setCPF_Monthly_Instalment(CPF_Monthly_Instalment);

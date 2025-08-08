@@ -57,7 +57,9 @@ export function LoginPage() {
                 return;
             }
 
-            const redirect = sp.get("redirect") || "/dashboard";
+            // after res.ok in your login page
+            const r = sp.get('redirect');
+            const redirect = r && r !== '/' ? r : '/dashboard';
             router.replace(redirect);
             router.refresh();
         } finally {

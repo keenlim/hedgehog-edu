@@ -12,13 +12,22 @@ export function middleware(req: NextRequest) {
 
     if (isPublicAsset) return NextResponse.next();
 
-    const authed = req.cookies.get(AUTH_COOKIE)?.value === AUTH_COOKIE_VALUE;
+    const cookieVal = req.cookies.get(AUTH_COOKIE)?.value;
+    const expected = AUTH_COOKIE_VALUE;
+    const authed = !!expected && !!cookieVal && cookieVal === expected
+
+    console.log('MW hit', req.nextUrl.pathname, {
+        hasCookie: !!req.cookies.get(AUTH_COOKIE),
+        hasExpected: !!AUTH_COOKIE_VALUE,
+      })
 
     if (!authed && !isLogin) {
         // not authed and is not in login page, redirect to /login automatically 
         const url = req.nextUrl.clone();
         url.pathname = "/login";
-        url.searchParams.set("redirect", pathname);
+        if (pathname !== '/') {
+            url.searchParams.set("redirect", pathname);
+        }
         return NextResponse.redirect(url);
     }
 
@@ -33,6 +42,7 @@ export function middleware(req: NextRequest) {
 
 }
 
+
 export const config = {
-    matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+    matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)'],
   };

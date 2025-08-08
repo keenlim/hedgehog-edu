@@ -148,7 +148,7 @@ export function TFLCalculatorPeriod(schoolFees: number,
 
 }
 
-export function useCalculator(schoolFees: any, academicSystem: 2 | 3, course: 'diploma' | 'degree', repaymentPeriod: any, interestRates: any, studyLength: any, repaymentPlans:string | null, repaymentAmount: any) {
+export function Calculator(schoolFees: any, academicSystem: 2 | 3, course: 'diploma' | 'degree', repaymentPeriod: any, interestRates: any, studyLength: any, repaymentPlans:string | null, repaymentAmount: any) {
     if (repaymentPlans === 'repaymentPeriod') {
 
         // Calculate CPF Monthly Instalment & Total Payment Amount

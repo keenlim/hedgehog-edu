@@ -5,11 +5,10 @@ import { AUTH_COOKIE, AUTH_COOKIE_VALUE, MAGIC_CODE } from "@/app/lib/auth";
 export async function POST(req: Request) {
     const { code } = await req.json().catch(() => ({ code: ""}));
 
-    console.log("Magic code from env:", process.env.MAGIC_CODE);
-
     if (code !== MAGIC_CODE) {
         return NextResponse.json({ok: false, error: "Invalid code, please try again!"}, {status: 401});
     }
+
     // set a simple session cookie
     (await cookies()).set({
         name: AUTH_COOKIE,
@@ -18,6 +17,7 @@ export async function POST(req: Request) {
         sameSite: "lax",
         secure: true, 
         path: "/",
+        maxAge: 60 * 60 * 24, // 1 day
     });
 
     return NextResponse.json({ ok: true });
