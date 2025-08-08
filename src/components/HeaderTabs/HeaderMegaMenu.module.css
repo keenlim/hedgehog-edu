@@ -8,3 +8,14 @@
 .title {
   color:#10605F
 }
+
+.logoutBtn {
+  position: absolute;
+  top: 20px;
+  right: 12px;
+}
+
+.logoutBtn:hover {
+  background-color: #10605F;
+  color: white;
+}
