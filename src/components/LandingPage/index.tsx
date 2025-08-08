@@ -404,6 +404,37 @@ export function LandingPageComponent() {
             Need more information?
           </Title>
           <Grid gutter="lg">
+
+            <Grid.Col span={{ base: 12, md: 4 }}>
+              <Card
+                withBorder
+                radius="md"
+                padding="lg"
+                style={{
+                  height: 150,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <Title order={6} mb="xs">
+                    MOE Tuition Fee Loan
+                  </Title>
+                  <Text size="sm" c="dimmed">
+                  Find out more about the MOE TFL which is interest-free during the course of study
+                  </Text>
+                </div>
+                <Anchor
+                  href="https://www.moe.gov.sg/financial-matters/government-loan-schemes/tuition-fee-loan"
+                  className={classes.resourceLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more
+                </Anchor>
+              </Card>
+            </Grid.Col>
             <Grid.Col span={{ base: 12, md: 4 }}>
               <Card
                 withBorder
@@ -426,37 +457,6 @@ export function LandingPageComponent() {
                 </div>
                 <Anchor
                   href="https://www.cpf.gov.sg/service/article/what-is-the-cpf-education-loan-scheme"
-                  className={classes.resourceLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn more
-                </Anchor>
-              </Card>
-            </Grid.Col>
-
-            <Grid.Col span={{ base: 12, md: 4 }}>
-              <Card
-                withBorder
-                radius="md"
-                padding="lg"
-                style={{
-                  height: 150,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <Title order={6} mb="xs">
-                    MOE Tuition Fee Loan
-                  </Title>
-                  <Text size="sm" c="dimmed">
-                    Find out more about MOE TFL on their website
-                  </Text>
-                </div>
-                <Anchor
-                  href="https://www.moe.gov.sg/financial-matters/government-loan-schemes/tuition-fee-loan"
                   className={classes.resourceLink}
                   target="_blank"
                   rel="noopener noreferrer"

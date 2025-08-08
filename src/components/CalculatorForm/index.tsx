@@ -238,10 +238,10 @@ export function CalculatorForm ({
 
                     <Space h="lg" />
                     <Text mb="md">
-                        Select repayment plan
+                       What do you want to calculate? 
                     </Text>
                     <Select data={RepaymentPlan}
-                            placeholder="Select repayment plan"
+                            placeholder="What do you want to calculate?"
                             value={repaymentPlans}
                             onChange={(newValue) => handleRepaymentPlans(newValue)}
                             size="lg"
