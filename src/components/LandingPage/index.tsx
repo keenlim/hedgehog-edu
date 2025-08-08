@@ -15,6 +15,7 @@ import {
   Text,
   Title,
   Accordion,
+  ScrollArea,
 } from "@mantine/core";
 import classes from "./LandingPage.module.css";
 
@@ -275,14 +276,17 @@ export function LandingPageComponent() {
           </Title>
 
           <Paper withBorder radius="md" p="md">
-            <Table verticalSpacing="md" striped highlightOnHover>
-              <Table.Thead className={classes.tableStickyHead}>
-                <Table.Tr>
-                  <Table.Th style={{ width: "28%" }}>Scheme feature</Table.Th>
-                  <Table.Th>CPF Education Loan</Table.Th>
-                  <Table.Th>MOE Tuition Fee Loan</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
+            <ScrollArea type="auto" w="100%">
+              <Table verticalSpacing="md" 
+                      striped highlightOnHover
+                      className={classes.compareTable}>
+                <Table.Thead className={classes.tableStickyHead}>
+                  <Table.Tr>
+                    <Table.Th style={{ width: "28%" }}>Scheme feature</Table.Th>
+                    <Table.Th>CPF Education Loan</Table.Th>
+                    <Table.Th>MOE Tuition Fee Loan</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
 
             <Table.Tbody>
               <Row
@@ -362,6 +366,7 @@ export function LandingPageComponent() {
                 />
               </Table.Tbody>
             </Table>
+            </ScrollArea>
           </Paper>
         </section>
 

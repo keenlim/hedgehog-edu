@@ -62,14 +62,14 @@ export function ResultsExplain ({
                     variants={centerCard}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
-                    <Title size="h2">
+                    <Title size="h2" className={classes.sectionTitle}>
                         Impact on Lenders' Retirement Sum
                     </Title>
                 </motion.div>
             </Center>
 
             <Center pt="md">
-                <Grid gutter="lg" justify="center" align="center">
+                <Grid gutter={{base: 'md', md: "lg"}} justify="center" align="center">
                     <Grid.Col span={{ base: 12, md: 4 }}>
                         <motion.div
                             initial="hidden"
@@ -81,7 +81,7 @@ export function ResultsExplain ({
                             <Card withBorder radius="md" padding="lg" className={classes.card}>
                                 {isEligibleForWithdrawal ? (
                                     <>
-                                        <Title size="h1" ta="center">
+                                        <Title size="h1" ta="center" className={classes.value}>
                                         - {formatCurrency(cpfTotalRepaymentAmount * (1.025 ** 12))}
                                         </Title>
                                         <Space h="xs" />
@@ -252,6 +252,7 @@ export function ResultsExplain ({
                                     size="xl"
                                     justify="space-between"
                                     radius="md"
+                                    className={classes.ctaButton}
                                     onClick={handleClickCPF}>Apply for CPF Education Loan</Button>
                         </motion.div>
                     </Grid.Col>
@@ -272,6 +273,7 @@ export function ResultsExplain ({
                                     size="xl"
                                     justify="space-between"
                                     radius="md"
+                                    className={classes.ctaButton}
                                     onClick={handleClickMOE}>Apply for MOE Tuition Fee Loan
                             </Button>
                         </motion.div>

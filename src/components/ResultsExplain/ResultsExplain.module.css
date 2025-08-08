@@ -2,8 +2,79 @@
     padding: 32px;
     margin-bottom: 32px;
 }
-.card {
-    min-width: 400px;
-    min-height: 120px;
-    border: 1px solid #9dbfbf
+
+@media (max-width: 992px) {
+    .main {
+      padding: 24px;
+      margin-bottom: 24px;
+    }
   }
+  @media (max-width: 576px) {
+    .main {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+  }
+
+.card {
+    width: 100%;
+    max-width: 520px;       /* looks great on md; prevents overly wide cards */
+    min-height: 120px;
+    margin-inline: auto;    /* center within column */
+    border: 1px solid #9dbfbf;
+    padding: 20px;   
+  }
+
+  @media (max-width: 992px) {
+    .card {
+      max-width: 460px;
+      padding: 16px;
+    }
+  }
+  @media (max-width: 576px) {
+    .card {
+      max-width: 100%;
+      padding: 12px;
+    }
+  }
+
+/* Section headings */
+.sectionTitle {
+    text-align: center;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    line-height: 1.2;
+  }
+  
+  /* Big numeric values (h1 size) */
+  .value {
+    text-align: center;
+    font-size: clamp(1.25rem, 6vw, 2.25rem);
+    line-height: 1.15;
+    word-break: break-word; /* just in case, prevents overflow */
+  }
+  
+  /* Body text in cards */
+  .card p,
+  .card .mantine-Text-root {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    line-height: 1.4;
+  }
+  
+  /* CTA buttons: scale down on small screens */
+  .ctaButton {
+    height: auto; /* let content drive height */
+    padding-block: 12px;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  }
+  
+  @media (max-width: 576px) {
+    .ctaButton {
+      padding-block: 10px;
+    }
+  }
+  
+  /* Divider line subtlety across widths */
+  .mutedDivider {
+    background-color: #aab;
+  }
+  

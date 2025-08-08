@@ -1,6 +1,6 @@
 'use client'
 
-import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select, Group} from '@mantine/core';
+import { Text, Paper, Center, Box, Title, List, Space, NumberInput, Anchor, Select, Group, ScrollArea} from '@mantine/core';
 import classess from './CalculatorForm.module.css';
 import { SelectableOptionButton } from '../Common/SelectableOptionButton';
 import { TooltipInfo } from '../Common/Tooltip';
@@ -80,7 +80,7 @@ export function CalculatorForm ({
         animate="show"
         variants={container}>
         <Center>
-            <Box w="80%" mx="auto">
+            <Box w={{ base: '100%', sm: '90%', md: '85%', lg: '80%' }} mx="auto">
                 <Paper className={classess.paperForm}>
                     <Title order={3}>
                         Calculate the total payment amount for both the CPF Education Loan and the MOE Tuition Fee Loan (TFL) 
@@ -98,7 +98,8 @@ export function CalculatorForm ({
                         <List.Item>Details of your lender's CPF Ordinary Account (OA)</List.Item>
                     </List>
 
-                    <Paper mt="lg" shadow="xs" radius="md" p="xl" bg="#f8f5f5">
+                    <Paper mt="lg" shadow="xs" radius="md" p="xl" bg="#f8f5f5" className={classess.notesCard}>
+                        <ScrollArea.Autosize mah={{ base: 180, sm: 220, md: 260 }} type="auto" offsetScrollbars>
                         <Text pb="xs" fw={800}>Important notes</Text>
                         <List withPadding>
                             <List.Item>
@@ -115,6 +116,7 @@ export function CalculatorForm ({
                             </List>
                             <List.Item>Repayment for the CPF Education Loan starts 1 year after graduation</List.Item>
                         </List>
+                        </ScrollArea.Autosize>
                     </Paper>
 
                     <Space h="lg" />

@@ -2,9 +2,25 @@
     padding: 32px;
 }
 
+@media (max-width: 768px) {
+    .resultsBox {
+      padding: 16px;
+    }
+  }
+
 .headerText {
     color: #f6d594;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.2;
+
 }
+
+@media (max-width: 768px) {
+    .headerText {
+      font-size: 1.1rem;
+    }
+  }
 
 .divider {
     color: #ffffff;
@@ -12,11 +28,31 @@
 
 .amountText {
     color: #ffffff;
-}
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+  
+  @media (max-width: 768px) {
+    .amountText {
+      font-size: 1.4rem;
+    }
+  }
 
-.smallerText {
-  letter-spacing: 0.05em;
-}
+
+  .smallerText {
+    letter-spacing: 0.05em;
+    text-align: center;
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+  
+  @media (max-width: 768px) {
+    .smallerText {
+      font-size: 0.6rem;
+    }
+  }
+  
 
 .iconPlus {
     margin: 0 0.25rem;
@@ -29,5 +65,12 @@
 }
 
 .textFont {
-    font-size: 32px;
-}
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .textFont {
+      font-size: 1.2rem;
+    }
+  }

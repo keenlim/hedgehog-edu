@@ -38,6 +38,10 @@
   .note {
 	background-color: #f8f5f5;
   }
+
+  .compareTable {
+	min-width: 720px;
+  }
   
   .tableStickyHead th {
 	position: sticky;
@@ -61,5 +65,26 @@
 	/* font size and vertical centering */
 	font-size: 1.5rem;
 	line-height: 80px;
+}
 
+/* Tablet */
+@media (max-width: 992px) {
+	.bigButton {
+	  height: 90px;
+	  padding-left: 2rem;
+	  padding-right: 2rem;
+	  font-size: 1.2rem;
+	  line-height: 65px;
+	}
+  }
+  
+/* Mobile */
+@media (max-width: 576px) {
+.bigButton {
+	height: 90px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	font-size: 1rem;
+	line-height: 55px;
+}
 }

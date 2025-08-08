@@ -2,6 +2,14 @@
     padding: 3rem;
 }
 
+/* Softer padding on tablets/phones */
+@media (max-width: 992px) {
+    .paperForm { padding: 2rem; }
+  }
+  @media (max-width: 576px) {
+    .paperForm { padding: 1.25rem; }
+  }
+
 .feesInput {
     padding: 16px 12px;
 }
@@ -11,10 +19,22 @@
     outline: none; /* remove default outline if present */
   }
 
+/* Reduce input height and font-size on small screens */
+@media (max-width: 576px) {
+    .numberInput input {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 0.95rem;
+    }
+  }
+
+/* Keep long URLs from breaking layout */
 .anchorText {
     color: var(--mantine-color-teal-7);
     text-decoration: none;
-}
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
 
 .dropdown input:focus {
     border-color: var(--mantine-color-teal-5);
@@ -30,3 +50,10 @@
     color: var(--mantine-color-blue-7);
     font-weight: 800;
 }
+
+/* Optional: give notes card a subtle border on mobile so the scroll area looks intentional */
+@media (max-width: 576px) {
+    .notesCard {
+      border: 1px solid var(--mantine-color-gray-3);
+    }
+  }

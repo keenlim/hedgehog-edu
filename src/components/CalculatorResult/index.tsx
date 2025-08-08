@@ -1,12 +1,13 @@
 'use client'
 
 import { useRef } from 'react';
-import { Box, Button, Center, Divider, Grid, Group, NumberInput, Slider, Space, Text, Textarea, Title } from '@mantine/core';
+import { Button, Center, Divider, Grid, Group, Slider, Space, Text, Title } from '@mantine/core';
 import classes from './CalculatorResult.module.css';
 import { formatCurrency } from '@/utils/format';
 import { IconEdit, IconPlus } from '@tabler/icons-react';
 import { useMemo } from 'react';
 import { motion } from 'motion/react';
+import { useMediaQuery } from '@mantine/hooks';
 
 interface CalculaterResultProps {
     cpfMonthlyInstalment: number;
@@ -48,6 +49,8 @@ export function CalculatorResultDesktop({
     handleRepaymentAmountSlider
 }: CalculaterResultProps) {
 
+    const isMobile = useMediaQuery('(max-width: 576px)');
+
     const isEligibleForWithdrawal = useMemo(() => {
         return (schoolFees * studyLength * academicSystem) <= cpfWithdrawalLimit;
     }, [schoolFees, studyLength, academicSystem, cpfWithdrawalLimit]);
@@ -82,12 +85,12 @@ export function CalculatorResultDesktop({
             <Grid mt="sm" py="sm" px="md" justify="center" align="center">
                 <Grid.Col span={6}>
                     <Center>
-                        <Title size="h2" className={classes.headerText}>CPF Education Loan</Title>
+                        <Title size="h1" className={classes.headerText}>CPF Education Loan</Title>
                     </Center>   
                 </Grid.Col>
                 <Grid.Col span={6}>
                     <Center>
-                        <Title size="h2" className={classes.headerText}>MOE Tuition Fee Loan</Title>
+                        <Title size="h1" className={classes.headerText}>MOE Tuition Fee Loan</Title>
                     </Center>   
                 </Grid.Col>
 
@@ -104,7 +107,9 @@ export function CalculatorResultDesktop({
                             <motion.div
                                 initial={{opacity: 0, scale: 0}}
                                 animate={{opacity: 1, scale: 1}}>
-                                <Title size="h1" className={classes.amountText}>
+                                <Title size="h1" 
+                                    className={classes.amountText}
+                                    style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
                                     {cpfTotalRepaymentAmount ? formatCurrency(cpfTotalRepaymentAmount): 'NA'}
                                 </Title>
                             </motion.div>
@@ -114,7 +119,7 @@ export function CalculatorResultDesktop({
                             <motion.div
                                 initial={{opacity: 0, scale: 0}}
                                 animate={{opacity: 1, scale: 1}}>
-                                <Text size="md" c="#f6d594">
+                                <Text size="md" c="#f6d594" className={classes.smallerText}>
                                     100 % loan coverage
                                 </Text>
                             </motion.div>
@@ -126,7 +131,9 @@ export function CalculatorResultDesktop({
                             <motion.div
                                 initial={{opacity: 0, scale: 0}}
                                 animate={{opacity: 1, scale: 1}}>
-                                <Title size="h1" className={classes.amountText}>
+                                <Title size="h1" 
+                                    className={classes.amountText}
+                                    style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
                                     Not Eligible
                                 </Title>
                             </motion.div>
@@ -140,7 +147,9 @@ export function CalculatorResultDesktop({
                         <motion.div
                                     initial={{opacity: 0, scale: 0}}
                                     animate={{opacity: 1, scale: 1}}>
-                            <Title size="h1" className={classes.amountText}>
+                            <Title size="h1" 
+                                className={classes.amountText}
+                                style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
                                 {tflTotalRepaymentAmount ? formatCurrency(tflTotalRepaymentAmount): 'NA'}
                             </Title>
                         </motion.div>
@@ -153,10 +162,9 @@ export function CalculatorResultDesktop({
                                 {tflPrincipalAmount ? `${course === 'diploma' ? '75% ' : '90% '}Loan Coverage: ${formatCurrency(tflPrincipalAmount)}` : 'NA'}
                             </Text>
                             <IconPlus size={24} color="#f6d594" className={classes.iconPlus} />
-                            <Text size="md" c="#f6d594">
+                            <Text size="md" c="#f6d594" className={classes.smallerText}>
                                 {tflCashAmount ? `${course === 'diploma' ? '25% ' : '10% '} Cash: ${formatCurrency(tflCashAmount)}` : 'NA'}
                             </Text>
-                        
                     </Center>
                     </motion.div>
                 </Grid.Col>
@@ -177,7 +185,9 @@ export function CalculatorResultDesktop({
                             <motion.div
                                     initial={{opacity: 0, scale: 0}}
                                     animate={{opacity: 1, scale: 1}}>
-                                <Title size="h1" className={classes.amountText}>
+                                <Title size="h1" 
+                                    className={classes.amountText}
+                                    style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
                                     {repaymentPlan === 'repaymentPeriod' ? (
                                         cpfMonthlyInstalment ? `${formatCurrency(cpfMonthlyInstalment)}`: 'NA'
                                     ) : (
@@ -191,7 +201,7 @@ export function CalculatorResultDesktop({
                                     initial={{opacity: 0, scale: 0}}
                                     animate={{opacity: 1, scale: 1}}>
                                 {repaymentPlan === 'repaymentPeriod' ? (
-                                    <Text size="sm" c="#f6d594">
+                                    <Text size="sm" c="#f6d594" mt="xs" className={classes.smallerText}>
                                         for {repaymentPeriod ? (repaymentPeriod > 12 ? 12 : repaymentPeriod): null} years
                                     </Text>
                                 ) : null}
@@ -204,7 +214,9 @@ export function CalculatorResultDesktop({
                                 initial={{opacity: 0, scale: 0}}
                                 animate={{opacity: 1, scale: 1}}>
                             <Center>
-                                <Title size="h1" className={classes.amountText}>
+                                <Title size="h1" 
+                                    className={classes.amountText}
+                                    style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
                                     Not Eligible
                                 </Title>
                             </Center>   
@@ -224,7 +236,9 @@ export function CalculatorResultDesktop({
                         initial={{opacity: 0, scale: 0}}
                         animate={{opacity: 1, scale: 1}}>
                         <Center>
-                            <Title size="h1" className={classes.amountText}>
+                            <Title size="h1" 
+                                className={classes.amountText}
+                                style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
                                 {repaymentPlan === 'repaymentPeriod' ? (
                                     tflMonthlyInstalment ? `${formatCurrency(tflMonthlyInstalment)}` : 'NA'
                                 ) : `${tflMonthlyInstalment} months`}
@@ -232,7 +246,7 @@ export function CalculatorResultDesktop({
                         </Center>  
                         <Center>
                             {repaymentPlan === 'repaymentPeriod' ? (
-                                <Text size="sm" c="#f6d594">
+                                <Text size="sm" c="#f6d594" mt="xs" className={classes.smallerText}>
                                     for {repaymentPeriod ? 
                                         (repaymentPeriod > (course === 'diploma' ? 10 : 20) ? 
                                         (course === 'diploma' ? 10 : 20) 
@@ -261,14 +275,17 @@ export function CalculatorResultDesktop({
                     <Center>
                         <Group
                              align="center"
-                             style={{ width: '50%' }}
-                             gap="xl">
+                             w="100%"
+                             maw={700}
+                             gap="md"
+                             wrap="wrap">
                             <Slider 
                                 color="white"
                                 value={repaymentPlan === 'repaymentPeriod' ? repaymentPeriod : repaymentAmount}
                                 onChange={repaymentPlan === 'repaymentPeriod' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
                                 onChangeEnd={repaymentPlan === 'repaymentPeriod' ? handleRepaymentPeriodSlider : handleRepaymentAmountSlider}
-                                marks={repaymentPlan === 'repaymentPeriod' ? (course === 'diploma' ? [
+                                marks={isMobile ? [] :
+                                    repaymentPlan === 'repaymentPeriod' ? (course === 'diploma' ? [
                                     { value: 2, label: '2' },
                                     { value: 4, label: '4' },
                                     { value: 6, label: '6' },
@@ -336,7 +353,6 @@ export function CalculatorResultDesktop({
                     </motion.div>
                    </Center>
                 </Grid.Col>
-
             </Grid>
 
         </div>
