@@ -159,7 +159,7 @@ export function CalculatorResultDesktop({
                                 animate={{opacity: 1, scale: 1}}>
                     <Center pb="xs">
                             <Text size="md" c="#f6d594" className={classes.smallerText}>
-                                {tflPrincipalAmount ? `${course === 'diploma' ? '75% ' : '90% '}Loan Coverage: ${formatCurrency(tflPrincipalAmount)}` : 'NA'}
+                                {tflTotalRepaymentAmount ? `${course === 'diploma' ? '75% ' : '90% '}Loan Coverage: ${formatCurrency(tflTotalRepaymentAmount - tflCashAmount)}` : 'NA'}
                             </Text>
                             <IconPlus size={24} color="#f6d594" className={classes.iconPlus} />
                             <Text size="md" c="#f6d594" className={classes.smallerText}>
