@@ -131,7 +131,7 @@ export function ResultsExplain ({
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                             >
                             <Center py="md">
-                                <Title size="h2">
+                                <Title size="h2" className={classes.sectionTitle}>
                                     Deferment Options
                                 </Title>
                             </Center>
@@ -178,7 +178,7 @@ export function ResultsExplain ({
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                             >
                             <Center py="md">
-                                <Title size="h2">
+                                <Title size="h2" className={classes.sectionTitle}>
                                     When Interest Starts to Accrue
                                 </Title>
                             </Center>
