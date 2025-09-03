@@ -1,8 +1,11 @@
+# hedgehog-edu
+This is the source code for the comparison of CPF Edu Loan and MOE TFL. 
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, to run the development server on local:
 
 ```bash
 npm run dev
